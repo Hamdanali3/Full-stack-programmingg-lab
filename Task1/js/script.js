@@ -323,5 +323,6 @@ $(document).ready(function () {
   }
 
   // ---- Initialize: Show step 1, hide prev & submit ----
+ 
   goToStep(1);
 });

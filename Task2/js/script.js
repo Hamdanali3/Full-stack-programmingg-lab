@@ -9,6 +9,7 @@
 // Question 1
 const question1 = "What does HTML stand for?";
 const answer1 = "HyperText Markup Language";
+const answer1Options = ["HyperText Markup Language", "Home Tool Markup Language", "Hyperlinks Text Mark Language", "Hyper Transfer Markup Language"];
 
 // Question 2
 const question2 = "Which CSS property is used to change the text color?";
