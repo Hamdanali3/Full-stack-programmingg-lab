@@ -1,93 +1,78 @@
-// ========================================
-// Lab Task 5: Product Catalog using Map
-// Key = Product ID, Value = Product Object
-// ========================================
+/* ============================================================
+   Task 5 — Product Catalog
+   ES6 Map, key-value pairs, search, delete, .size
+   ============================================================ */
 
-const productCatalog = new Map();
+const catalog = new Map();
+const tbodyEl = document.getElementById('tbody');
+const statsEl = document.getElementById('stats');
+const resultEl = document.getElementById('result');
+const searchInputEl = document.getElementById('searchInput');
 
-const icons = { Electronics: "fa-laptop", Accessories: "fa-headphones", Peripherals: "fa-keyboard" };
+// Populate catalog — keys are product IDs
+catalog.set('PRD-101', { name: 'Wireless Headphones', category: 'Audio', price: 3500, addedBy: 'Hamdan Ali' });
+catalog.set('PRD-102', { name: 'Portable SSD 1TB', category: 'Storage', price: 8900, addedBy: 'Hamdan Ali' });
+catalog.set('PRD-103', { name: 'Ergonomic Chair', category: 'Furniture', price: 22000, addedBy: 'Rabia Anwar' });
+catalog.set('PRD-104', { name: 'USB Microphone', category: 'Audio', price: 4200, addedBy: 'Fahad Hussain' });
+catalog.set('PRD-105', { name: '27" Monitor', category: 'Display', price: 35000, addedBy: 'Sana Yousuf' });
+catalog.set('PRD-106', { name: 'Webcam HD 1080p', category: 'Peripherals', price: 2800, addedBy: 'Tariq Mehmood' });
 
-productCatalog.set(101, { name: "Laptop", price: 85000, category: "Electronics" });
-productCatalog.set(102, { name: "Headphones", price: 3500, category: "Accessories" });
-productCatalog.set(103, { name: "Keyboard", price: 2500, category: "Peripherals" });
-productCatalog.set(104, { name: "Mouse", price: 1500, category: "Peripherals" });
-productCatalog.set(105, { name: "Monitor", price: 45000, category: "Electronics" });
+renderTable();
+renderStats();
 
-const output = document.getElementById("output");
-let html = "";
+function renderTable() {
+    let html = '';
+    for (const [id, prod] of catalog) {
+        html += `<tr>
+            <td><strong>${id}</strong></td>
+            <td>${prod.name}</td>
+            <td>${prod.category}</td>
+            <td>Rs. ${prod.price.toLocaleString()}</td>
+            <td><button class="del-btn" onclick="deleteProduct('${id}')">Remove</button></td>
+        </tr>`;
+    }
+    tbodyEl.innerHTML = html;
+}
 
-// All Products
-html += `
-    <div class="card">
-        <h2><i class="fas fa-boxes-stacked"></i> All Products</h2>
-        <p><span class="label">Total Products (.size):</span>
-           <span class="badge"><i class="fas fa-hashtag"></i> ${productCatalog.size}</span></p>
-`;
-
-productCatalog.forEach(function (product, id) {
-    html += `
-        <div class="product-row">
-            <div class="product-icon"><i class="fas ${icons[product.category] || 'fa-box'}"></i></div>
-            <div>
-                <p><span class="value">${product.name}</span>
-                   <span class="category-tag">${product.category}</span></p>
-                <p style="margin:2px 0"><span class="label">ID:</span> <span class="value">${id}</span></p>
-            </div>
-            <div class="product-price">Rs. ${product.price.toLocaleString()}</div>
-        </div>
+function renderStats() {
+    const total = [...catalog.values()].reduce((s, p) => s + p.price, 0);
+    const categories = new Set([...catalog.values()].map(p => p.category));
+    statsEl.innerHTML = `
+        <div class="stat-box"><div class="num">${catalog.size}</div><div class="lbl">Total Products</div></div>
+        <div class="stat-box"><div class="num">${categories.size}</div><div class="lbl">Categories</div></div>
+        <div class="stat-box"><div class="num">Rs. ${total.toLocaleString()}</div><div class="lbl">Total Value</div></div>
     `;
+}
+
+function searchProduct() {
+    const id = searchInputEl.value.trim().toUpperCase();
+    if (!id) return;
+
+    if (catalog.has(id)) {
+        const p = catalog.get(id);
+        resultEl.style.display = 'block';
+        resultEl.innerHTML = `<strong>Found:</strong> ${p.name} — ${p.category} — Rs. ${p.price.toLocaleString()} (Added by ${p.addedBy})`;
+    } else {
+        resultEl.style.display = 'block';
+        resultEl.innerHTML = `No product found with ID <strong>${id}</strong>.`;
+        resultEl.style.background = '#fef2f2';
+        resultEl.style.color = '#991b1b';
+        setTimeout(() => { resultEl.style.background = ''; resultEl.style.color = ''; }, 2500);
+    }
+}
+
+function deleteProduct(id) {
+    catalog.delete(id);
+    renderTable();
+    renderStats();
+    resultEl.style.display = 'block';
+    resultEl.innerHTML = `Product <strong>${id}</strong> removed. Catalog size: ${catalog.size}`;
+    console.log(`Deleted ${id}. Map size: ${catalog.size}`);
+}
+
+searchInputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') searchProduct();
 });
-html += `</div>`;
 
-// Search by ID
-const searchId = 103;
-const foundProduct = productCatalog.get(searchId);
-
-html += `
-    <div class="card">
-        <h2><i class="fas fa-magnifying-glass"></i> Search by ID</h2>
-        <p><span class="label">Searching for ID:</span> <span class="value">${searchId}</span></p>
-        <div class="found-banner">
-            <i class="fas fa-circle-check"></i>
-            Found: <strong>${foundProduct.name}</strong> — Rs. ${foundProduct.price.toLocaleString()} (${foundProduct.category})
-        </div>
-    </div>
-`;
-
-// Delete product
-const deleteId = 104;
-const deletedProduct = productCatalog.get(deleteId);
-productCatalog.delete(deleteId);
-
-html += `
-    <div class="card">
-        <h2><i class="fas fa-trash-can"></i> Delete Product</h2>
-        <p><span class="label">Deleted ID:</span> <span class="value">${deleteId} (${deletedProduct.name})</span></p>
-        <div class="deleted-banner">
-            <i class="fas fa-circle-xmark"></i> Product removed from catalog.
-        </div>
-        <p style="margin-top:12px"><span class="label">Remaining (.size):</span>
-           <span class="badge"><i class="fas fa-hashtag"></i> ${productCatalog.size}</span></p>
-    </div>
-`;
-
-// Updated Catalog
-html += `
-    <div class="card">
-        <h2><i class="fas fa-rotate"></i> Updated Catalog</h2>
-`;
-productCatalog.forEach(function (product, id) {
-    html += `
-        <div class="product-row">
-            <div class="product-icon"><i class="fas ${icons[product.category] || 'fa-box'}"></i></div>
-            <div>
-                <p><span class="value">${product.name}</span>
-                   <span class="category-tag">${product.category}</span></p>
-            </div>
-            <div class="product-price">Rs. ${product.price.toLocaleString()}</div>
-        </div>
-    `;
-});
-html += `</div>`;
-
-output.innerHTML = html;
+console.log('--- Product Catalog Ready ---');
+console.log('Map size:', catalog.size);

@@ -1,9 +1,8 @@
-// ========================================
-// Lab Task 1: Student Management System
-// Using ES6 Classes, let, const, Template Literals
-// ========================================
+/* ============================================================
+   Task 1 — Student Management System
+   ES6 Classes, let/const, template literals, dynamic rendering
+   ============================================================ */
 
-// ---------- ES6 Class ----------
 class Student {
     constructor(id, name, semester, courses) {
         this.id = id;
@@ -12,54 +11,45 @@ class Student {
         this.courses = courses;
     }
 
-    // Get initials for avatar
     getInitials() {
-        return this.name.split(" ").map(w => w[0]).join("");
+        const parts = this.name.trim().split(' ');
+        return parts.map(p => p[0]).join('').toUpperCase();
     }
 
-    // Method to return a styled HTML card using template literals
-    getCard() {
-        const courseItems = this.courses
-            .map(course => `<li>${course}</li>`)
-            .join("");
+    render() {
+        const courseChips = this.courses
+            .map(c => `<span>${c}</span>`)
+            .join('');
 
         return `
-            <div class="student-card">
-                <div class="avatar">${this.getInitials()}</div>
-                <h2>${this.name}</h2>
-                <div class="info-row">
-                    <i class="fas fa-id-badge"></i>
-                    <span class="label">ID:</span>
-                    <span class="value">${this.id}</span>
-                </div>
-                <div class="info-row">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span class="label">Semester:</span>
-                    <span class="value">${this.semester}</span>
-                </div>
-                <div class="info-row">
-                    <i class="fas fa-book"></i>
-                    <span class="label">Courses:</span>
-                </div>
-                <ul class="courses-list">${courseItems}</ul>
+        <div class="card">
+            <div class="avatar">${this.getInitials()}</div>
+            <h3>${this.name}</h3>
+            <div class="meta">
+                <div class="meta-row"><span class="k">ID</span><span class="v">${this.id}</span></div>
+                <div class="meta-row"><span class="k">Semester</span><span class="v">${this.semester}</span></div>
+                <div class="meta-row"><span class="k">Courses</span><span class="v">${this.courses.length}</span></div>
             </div>
-        `;
+            <div class="tags">${courseChips}</div>
+        </div>`;
     }
 }
 
-// ---------- Creating Student Objects (using let & const) ----------
-const student1 = new Student(101, "Ali Ahmed", "6th", ["JavaScript", "HTML", "CSS", "React"]);
-const student2 = new Student(102, "Hassan Khan", "4th", ["Python", "Data Structures", "OOP"]);
-const student3 = new Student(103, "Sara Malik", "5th", ["Node.js", "MongoDB", "Express"]);
+// Student data
+const students = [
+    new Student('STU-2024-001', 'Hamdan Ali', '6th', ['Web Development', 'Database Systems', 'Software Engineering']),
+    new Student('STU-2024-002', 'Sara Ahmed', '5th', ['Data Structures', 'Operating Systems']),
+    new Student('STU-2024-003', 'Bilal Khan', '6th', ['Machine Learning', 'Web Development', 'Cloud Computing']),
+    new Student('STU-2024-004', 'Fatima Noor', '4th', ['Computer Networks', 'Algorithms']),
+    new Student('STU-2024-005', 'Omar Raza', '6th', ['Cyber Security', 'Web Development', 'DevOps'])
+];
 
-// Storing in array using const
-const students = [student1, student2, student3];
+// Render to DOM
+const app = document.getElementById('app');
+app.innerHTML = students.map(s => s.render()).join('');
 
-// ---------- Displaying Students Dynamically ----------
-let htmlOutput = "";
-
-for (let i = 0; i < students.length; i++) {
-    htmlOutput += students[i].getCard();
-}
-
-document.getElementById("students-container").innerHTML = htmlOutput;
+// Console log
+console.log('--- Student Management System ---');
+students.forEach(s => {
+    console.log(`${s.name} | Sem: ${s.semester} | Courses: ${s.courses.join(', ')}`);
+});

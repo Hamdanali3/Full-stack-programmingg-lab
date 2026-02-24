@@ -1,54 +1,72 @@
-// ========================================
-// Lab Task 2: Online Shopping Cart
-// Using Rest, Spread, and Destructuring
-// ========================================
+/* ============================================================
+   Task 2 — Online Shopping Cart
+   Rest operator, Spread operator, Array Destructuring
+   ============================================================ */
 
-// ---------- Rest Operator (...items) ----------
+const app = document.getElementById('app');
+let output = '';
+
+// ── Rest operator: accept any number of items ──────────────
+const cart = [];
+
 function addToCart(...items) {
-    return items;
+    cart.push(...items);
+    return cart;
 }
 
-const cart = addToCart("Laptop", "Mouse", "Keyboard", "Monitor", "Headphones");
+addToCart(
+    { name: 'Mechanical Keyboard', price: 4500, buyer: 'Hamdan Ali' },
+    { name: 'USB-C Hub', price: 2800, buyer: 'Hamdan Ali' }
+);
+addToCart(
+    { name: 'Monitor Stand', price: 3200, buyer: 'Zainab Shah' },
+    { name: 'Wireless Mouse', price: 1500, buyer: 'Ahmed Tariq' },
+    { name: 'Laptop Sleeve', price: 900, buyer: 'Nadia Farooq' }
+);
 
-// ---------- Spread Operator ----------
+output += `<div class="panel">
+    <h2>Cart Items (Rest Operator)</h2>
+    <span class="label rest">...items</span>
+    <div class="output-block">${cart.map((item, i) => `${i + 1}. ${item.name} — Rs. ${item.price.toLocaleString()} (${item.buyer})`).join('\n')}</div>
+    <div class="total-bar">
+        <span>Total Items: ${cart.length}</span>
+        <span>Total: Rs. ${cart.reduce((s, i) => s + i.price, 0).toLocaleString()}</span>
+    </div>
+</div>`;
+
+// ── Spread operator: clone and extend cart ─────────────────
 const clonedCart = [...cart];
-const updatedCart = [...clonedCart, "USB Cable", "Webcam"];
+const extraItems = [
+    { name: 'Desk Lamp', price: 1800, buyer: 'Hamdan Ali' },
+    { name: 'Cable Organizer', price: 650, buyer: 'Imran Malik' }
+];
+const updatedCart = [...clonedCart, ...extraItems];
 
-// ---------- Array Destructuring ----------
-const [firstProduct, ...remainingProducts] = updatedCart;
-
-// ---------- Display Results ----------
-const container = document.getElementById("cart-output");
-
-const buildTags = (arr) => arr.map(item =>
-    `<span class="highlight"><i class="fas fa-box-open"></i> ${item}</span>`
-).join("");
-
-let html = `
-    <div class="card">
-        <h2><i class="fas fa-basket-shopping"></i> Original Cart (Rest Operator)</h2>
-        <p><span class="label">Total Items:</span> <span class="value">${cart.length}</span></p>
-        <div class="tag-container">${buildTags(cart)}</div>
+output += `<div class="panel">
+    <h2>Updated Cart (Spread Operator)</h2>
+    <span class="label spread">[...cart, ...extras]</span>
+    <div class="output-block">${updatedCart.map((item, i) => `${i + 1}. ${item.name} — Rs. ${item.price.toLocaleString()}`).join('\n')}</div>
+    <div class="total-bar">
+        <span>Items: ${updatedCart.length}</span>
+        <span>Updated Total: Rs. ${updatedCart.reduce((s, i) => s + i.price, 0).toLocaleString()}</span>
     </div>
+</div>`;
 
-    <div class="card">
-        <h2><i class="fas fa-clone"></i> Cloned Cart (Spread Operator)</h2>
-        <p><span class="label">Total Items:</span> <span class="value">${clonedCart.length}</span></p>
-        <div class="tag-container">${buildTags(clonedCart)}</div>
-    </div>
+// ── Array Destructuring ────────────────────────────────────
+const [firstItem, secondItem, ...remaining] = updatedCart;
 
-    <div class="card">
-        <h2><i class="fas fa-cart-plus"></i> Updated Cart (Spread &mdash; Added More)</h2>
-        <p><span class="label">Total Items:</span> <span class="value">${updatedCart.length}</span></p>
-        <div class="tag-container">${buildTags(updatedCart)}</div>
-    </div>
+output += `<div class="panel">
+    <h2>Destructured Cart</h2>
+    <span class="label destr">[first, second, ...rest]</span>
+    <div class="output-block">First Item:  ${firstItem.name} — Rs. ${firstItem.price.toLocaleString()}
+Second Item: ${secondItem.name} — Rs. ${secondItem.price.toLocaleString()}
+Remaining:   ${remaining.length} item(s)</div>
+</div>`;
 
-    <div class="card">
-        <h2><i class="fas fa-scissors"></i> Destructured Cart</h2>
-        <p><span class="label">First Product:</span> <span class="value">${firstProduct}</span></p>
-        <p><span class="label">Remaining Products:</span></p>
-        <div class="tag-container">${buildTags(remainingProducts)}</div>
-    </div>
-`;
+app.innerHTML = output;
 
-container.innerHTML = html;
+// Console output
+console.log('--- Shopping Cart ---');
+console.log('Cart:', cart);
+console.log('Updated Cart:', updatedCart);
+console.log('Destructured → First:', firstItem.name, '| Second:', secondItem.name);

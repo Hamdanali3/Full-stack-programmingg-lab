@@ -3,117 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab Task 3 - Asynchronous Data Loader</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Task 3 — Async Data Loader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --muted: #6b7280;
+            --accent: #7c3aed;
+            --accent-soft: #f5f3ff;
+            --border: #e5e7eb;
+            --radius: 10px;
+            --danger: #dc2626;
+            --danger-soft: #fef2f2;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0d1117, #161b22, #1a2332);
-            color: #e0e0e0;
-            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg); color: var(--text);
+            line-height: 1.6; -webkit-font-smoothing: antialiased;
         }
-        .header {
-            text-align: center; padding: 40px 20px 30px;
-            animation: fadeDown 0.8s ease;
+        .wrap { max-width: 880px; margin: 0 auto; padding: 48px 24px 80px; }
+        .hdr { margin-bottom: 36px; }
+        .hdr .badge {
+            display: inline-block; font-size: .72rem; font-weight: 600;
+            letter-spacing: .06em; text-transform: uppercase;
+            color: var(--accent); background: var(--accent-soft);
+            padding: 4px 12px; border-radius: 6px; margin-bottom: 10px;
         }
-        .header h1 {
-            font-size: 2.4rem; font-weight: 700;
-            background: linear-gradient(90deg, #00f260, #0575e6);
-            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .header p { font-size: 1rem; color: #aaa; font-weight: 300; margin-top: 6px; }
+        .hdr h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: 4px; }
+        .hdr p { font-size: .92rem; color: var(--muted); }
 
-        .btn-greet {
-            display: inline-block; margin: 20px auto; padding: 12px 32px;
-            background: linear-gradient(135deg, #00f260, #0575e6);
-            color: #0d1117; border: none; border-radius: 50px;
-            font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 600;
-            cursor: pointer; transition: transform 0.25s, box-shadow 0.25s;
-            box-shadow: 0 4px 20px rgba(0, 242, 96, 0.3);
+        .controls {
+            display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px;
         }
-        .btn-greet:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 30px rgba(0, 242, 96, 0.45); }
-
-        #output { max-width: 700px; margin: 30px auto; padding: 0 10px; }
-
-        .card {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px; padding: 28px;
-            margin-bottom: 24px;
-            animation: fadeUp 0.6s ease both;
-            position: relative; overflow: hidden;
+        .btn {
+            padding: 10px 24px; font-size: .86rem; font-weight: 500;
+            font-family: inherit; border: none; border-radius: 8px;
+            cursor: pointer; transition: background .2s, transform .15s;
         }
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0;
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, #00f260, #0575e6);
+        .btn:active { transform: scale(.97); }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: #6d28d9; }
+        .btn-danger { background: var(--danger); color: #fff; }
+        .btn-danger:hover { background: #b91c1c; }
+
+        #status {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 20px 24px;
+            font-size: .9rem; color: var(--muted); margin-bottom: 24px;
+            min-height: 56px; display: flex; align-items: center; gap: 10px;
+        }
+        .spinner {
+            width: 18px; height: 18px; border: 2px solid var(--border);
+            border-top-color: var(--accent); border-radius: 50%;
+            animation: spin .6s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .user-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 22px;
+            transition: box-shadow .25s, transform .25s;
+            opacity: 0; animation: fadeUp .4s ease forwards;
+        }
+        .user-card:hover { box-shadow: 0 6px 16px rgba(0,0,0,.06); transform: translateY(-2px); }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        .user-card:nth-child(1) { animation-delay: .05s; }
+        .user-card:nth-child(2) { animation-delay: .12s; }
+        .user-card:nth-child(3) { animation-delay: .19s; }
+        .user-card:nth-child(4) { animation-delay: .26s; }
+        .user-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+        .user-card .detail { font-size: .84rem; color: var(--muted); margin-bottom: 3px; }
+
+        .error-box {
+            background: var(--danger-soft); border: 1px solid #fecaca;
+            border-radius: var(--radius); padding: 20px 24px;
+            color: var(--danger); font-size: .9rem; font-weight: 500;
         }
 
-        .card h2 {
-            font-size: 1.25rem; font-weight: 600; color: #00f260;
-            margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+        .ft {
+            margin-top: 48px; padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: .8rem; color: var(--muted); text-align: center;
         }
-        .card p { margin: 8px 0; font-size: 0.95rem; }
-        .label { font-weight: 500; color: #aaa; }
-        .value { color: #fff; font-weight: 500; }
-
-        .user-row {
-            background: rgba(0, 242, 96, 0.06);
-            border: 1px solid rgba(0, 242, 96, 0.12);
-            border-radius: 14px; padding: 18px; margin: 12px 0;
-            display: grid; grid-template-columns: 50px 1fr;
-            gap: 16px; align-items: center;
-            transition: transform 0.25s, box-shadow 0.25s;
+        @media (max-width: 640px) {
+            .wrap { padding: 28px 16px 60px; }
+            .hdr h1 { font-size: 1.4rem; }
+            .grid { grid-template-columns: 1fr; }
         }
-        .user-row:hover {
-            transform: translateX(6px);
-            box-shadow: 0 6px 20px rgba(0, 242, 96, 0.1);
-        }
-        .user-avatar {
-            width: 46px; height: 46px; border-radius: 50%;
-            background: linear-gradient(135deg, #00f260, #0575e6);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; color: #0d1117; font-size: 1rem;
-        }
-        .user-info p { margin: 3px 0; }
-
-        .loading {
-            text-align: center; padding: 40px;
-            font-size: 1.1rem; color: #00f260;
-            animation: pulse 1.5s ease infinite;
-        }
-        .loading i { font-size: 2rem; display: block; margin-bottom: 14px; }
-        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-        .error { color: #ff4757; }
-        .success { color: #00f260; font-weight: 600; }
-
-        @keyframes fadeDown { from{opacity:0;transform:translateY(-30px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes fadeUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
-
-        @media(max-width:768px){ .header h1{font-size:1.8rem} .user-row{grid-template-columns:1fr} }
-        @media(max-width:480px){ body{padding:10px} .header h1{font-size:1.5rem} .card{padding:20px 16px} }
     </style>
 </head>
 <body>
+<div class="wrap">
+    <header class="hdr">
+        <span class="badge">Lab 03 — Task 3</span>
+        <h1>Async Data Loader</h1>
+        <p>Promises &middot; setTimeout Simulation &middot; .then() / .catch() &middot; Dynamic DOM</p>
+    </header>
 
-    <div class="header">
-        <h1><i class="fas fa-cloud-arrow-down"></i> Asynchronous Data Loader</h1>
-        <p>Lab Task 3 &mdash; Promises, setTimeout, .then() &amp; .catch()</p>
+    <div class="controls">
+        <button class="btn btn-primary" onclick="loadUsers(false)">Fetch Users (Resolve)</button>
+        <button class="btn btn-danger" onclick="loadUsers(true)">Simulate Error (Reject)</button>
     </div>
 
-    <div style="text-align:center;">
-        <button class="btn-greet" onclick="alert('Loading users... please wait!')">
-            <i class="fas fa-hand-sparkles"></i>&ensp;Click to Alert
-        </button>
-    </div>
+    <div id="status">Click a button above to fetch user data.</div>
+    <section id="app" class="grid"></section>
 
-    <div id="output"></div>
-
-    <script src="script.js"></script>
+    <footer class="ft">Developed by Hamdan Ali — Full-Stack Programming Lab 03</footer>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

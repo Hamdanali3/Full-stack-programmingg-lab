@@ -1,74 +1,55 @@
-// ========================================
-// Lab Task 3: Asynchronous Data Loader
-// Using Promises, setTimeout, .then(), .catch()
-// ========================================
+/* ============================================================
+   Task 3 — Async Data Loader
+   Promises, setTimeout, .then() / .catch(), DOM rendering
+   ============================================================ */
 
-const output = document.getElementById("output");
+const statusEl = document.getElementById('status');
+const appEl = document.getElementById('app');
 
-// Show loading animation
-output.innerHTML = `
-    <div class="loading">
-        <i class="fas fa-spinner fa-spin"></i>
-        Loading users... please wait 3 seconds...
-    </div>`;
+// Simulated user database
+const usersDB = [
+    { id: 1, name: 'Hamdan Ali', email: 'hamdan.ali@mail.com', role: 'Full-Stack Developer' },
+    { id: 2, name: 'Ayesha Siddiqui', email: 'ayesha.s@mail.com', role: 'UI/UX Designer' },
+    { id: 3, name: 'Usman Ghani', email: 'usman.ghani@mail.com', role: 'Backend Engineer' },
+    { id: 4, name: 'Hira Bukhari', email: 'hira.b@mail.com', role: 'Data Analyst' }
+];
 
-// ---------- Boolean flag to simulate success/failure ----------
-const isServerOnline = true; // Change to false to see reject/error
-
-// ---------- Promise-based fetchUsers ----------
-function fetchUsers() {
-    return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            if (isServerOnline) {
-                resolve([
-                    { id: 1, name: "Ali Ahmed", email: "ali@example.com", role: "Student" },
-                    { id: 2, name: "Hassan Khan", email: "hassan@example.com", role: "Admin" },
-                    { id: 3, name: "Sara Malik", email: "sara@example.com", role: "Student" },
-                    { id: 4, name: "Fatima Noor", email: "fatima@example.com", role: "Teacher" }
-                ]);
+// Promise-based fetch simulation
+function fetchUsers(shouldFail = false) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (shouldFail) {
+                reject('Network Error: Unable to reach the server.');
             } else {
-                reject("Server is offline. Failed to fetch users!");
+                resolve(usersDB);
             }
-        }, 3000);
+        }, 2500);
     });
 }
 
-// ---------- .then() and .catch() ----------
-fetchUsers()
-    .then(function (users) {
-        const getInitials = (n) => n.split(" ").map(w => w[0]).join("");
-        const roleIcon = { Student: "fa-user-graduate", Admin: "fa-user-shield", Teacher: "fa-chalkboard-teacher" };
+// Load users on button click
+function loadUsers(fail) {
+    appEl.innerHTML = '';
+    statusEl.innerHTML = '<div class="spinner"></div> Fetching data, please wait...';
 
-        let html = `
-            <div class="card">
-                <h2><i class="fas fa-check-circle"></i> Users Loaded Successfully</h2>
-                <p><span class="label">Total Users:</span> <span class="value">${users.length}</span></p>
-                <p class="success"><i class="fas fa-server"></i> Server responded in 3 seconds</p>
-            </div>
-        `;
+    fetchUsers(fail)
+        .then(users => {
+            statusEl.textContent = `Loaded ${users.length} users successfully.`;
+            statusEl.style.color = '#059669';
 
-        users.forEach(function (user) {
-            html += `
-                <div class="card">
-                    <div class="user-row">
-                        <div class="user-avatar">${getInitials(user.name)}</div>
-                        <div class="user-info">
-                            <p><span class="label">Name:</span> <span class="value">${user.name}</span></p>
-                            <p><span class="label">Email:</span> <span class="value">${user.email}</span></p>
-                            <p><span class="label">Role:</span> <span class="value"><i class="fas ${roleIcon[user.role] || 'fa-user'}"></i> ${user.role}</span></p>
-                        </div>
-                    </div>
+            appEl.innerHTML = users.map(u => `
+                <div class="user-card" style="transform: translateY(8px);">
+                    <h3>${u.name}</h3>
+                    <p class="detail">${u.role}</p>
+                    <p class="detail">${u.email}</p>
                 </div>
-            `;
+            `).join('');
+        })
+        .catch(err => {
+            statusEl.textContent = '';
+            statusEl.style.color = '';
+            appEl.innerHTML = `<div class="error-box">${err}</div>`;
         });
+}
 
-        output.innerHTML = html;
-    })
-    .catch(function (error) {
-        output.innerHTML = `
-            <div class="card">
-                <h2 class="error"><i class="fas fa-exclamation-triangle"></i> Error Loading Data</h2>
-                <p class="error">${error}</p>
-            </div>
-        `;
-    });
+console.log('--- Async Data Loader Ready ---');

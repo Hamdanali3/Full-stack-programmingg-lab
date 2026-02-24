@@ -1,87 +1,54 @@
-// ========================================
-// Lab Task 7: Student Data Using JSON
-// JSON.stringify, JSON.parse, Destructuring, forEach/map
-// ========================================
+/* ============================================================
+   Task 7 — Student Data (JSON)
+   JSON.stringify, JSON.parse, Destructuring, forEach, map
+   ============================================================ */
 
-// ---------- Step 1: Create 3 student objects ----------
-const student1 = { name: "Ali Ahmed", age: 21, semester: "6th", courses: ["JavaScript", "React", "HTML"] };
-const student2 = { name: "Hassan Khan", age: 20, semester: "4th", courses: ["Python", "Data Structures", "OOP"] };
-const student3 = { name: "Sara Malik", age: 22, semester: "5th", courses: ["Node.js", "MongoDB", "Express"] };
+// Student objects
+const students = [
+    { id: 'STU-301', name: 'Hamdan Ali', gpa: 3.72, skills: ['JavaScript', 'React', 'Node.js'] },
+    { id: 'STU-302', name: 'Kiran Nawaz', gpa: 3.85, skills: ['Python', 'Django', 'PostgreSQL'] },
+    { id: 'STU-303', name: 'Danish Rauf', gpa: 3.60, skills: ['Java', 'Spring Boot', 'MongoDB'] }
+];
 
-const students = [student1, student2, student3];
-
-// ---------- Step 2: JSON.stringify() ----------
+// ── JSON.stringify ─────────────────────────────────────────
 const jsonString = JSON.stringify(students, null, 2);
+document.getElementById('jsonRaw').textContent = jsonString;
 
-// ---------- Step 3: JSON.parse() ----------
-const parsedStudents = JSON.parse(jsonString);
+// ── JSON.parse & Destructuring ─────────────────────────────
+const parsed = JSON.parse(jsonString);
+const [first, second, third] = parsed;
+const { name: firstName, gpa: firstGpa } = first;
+const { name: secondName, gpa: secondGpa } = second;
+const { name: thirdName, gpa: thirdGpa } = third;
 
-// ---------- Display results ----------
-const output = document.getElementById("output");
-const getInitials = (n) => n.split(" ").map(w => w[0]).join("");
+document.getElementById('jsonParsed').innerHTML =
+    `<span class="key">// Destructured from parsed JSON</span>\n\n` +
+    `First:  <span class="str">${firstName}</span>  GPA: <span class="num">${firstGpa}</span>\n` +
+    `Second: <span class="str">${secondName}</span>  GPA: <span class="num">${secondGpa}</span>\n` +
+    `Third:  <span class="str">${thirdName}</span>   GPA: <span class="num">${thirdGpa}</span>`;
 
-let html = `
-    <div class="card">
-        <span class="step-label"><i class="fas fa-1"></i> Step 1 & 2</span>
-        <h2><i class="fas fa-file-code"></i> Objects → JSON.stringify()</h2>
-        <p><span class="label">Converted ${students.length} student objects to JSON string:</span></p>
-        <div class="json-block">${jsonString}</div>
-    </div>
+// ── forEach: render cards ──────────────────────────────────
+const cardsEl = document.getElementById('cards');
+let cardsHtml = '';
 
-    <div class="card">
-        <span class="step-label"><i class="fas fa-3"></i> Step 3</span>
-        <h2><i class="fas fa-file-import"></i> JSON.parse() → Back to Objects</h2>
-        <p><span class="label">Status:</span>
-           <span class="value" style="color:#00e676"><i class="fas fa-circle-check"></i> Parsed successfully!</span></p>
-        <p><span class="label">Students Recovered:</span> <span class="value">${parsedStudents.length}</span></p>
-    </div>
-`;
-
-// ---------- Step 4, 5 & 6: Destructuring + map + innerHTML ----------
-const studentCards = parsedStudents.map(function (student) {
-    const { name, age, semester, courses } = student;
-    const courseTags = courses.map(c => `<span class="course-tag"><i class="fas fa-bookmark"></i> ${c}</span>`).join("");
-
-    return `
+parsed.forEach(student => {
+    const chips = student.skills.map(s => `<span>${s}</span>`).join('');
+    cardsHtml += `
         <div class="card">
-            <div class="student-row">
-                <div class="avatar">${getInitials(name)}</div>
-                <div>
-                    <p><span class="value" style="font-size:1.1rem;font-weight:600">${name}</span></p>
-                    <p><span class="label"><i class="fas fa-birthday-cake"></i> Age:</span> <span class="value">${age}</span>
-                       &nbsp;&nbsp;
-                       <span class="label"><i class="fas fa-calendar"></i> Semester:</span> <span class="value">${semester}</span></p>
-                    <p><span class="label"><i class="fas fa-book"></i> Courses:</span></p>
-                    <div style="margin-top:6px">${courseTags}</div>
-                </div>
-            </div>
-        </div>
-    `;
-}).join("");
-
-html += `
-    <div class="card">
-        <span class="step-label"><i class="fas fa-4"></i> Step 4, 5 & 6</span>
-        <h2><i class="fas fa-users"></i> Destructuring + map() + innerHTML</h2>
-        <p><span class="label">All ${parsedStudents.length} students displayed using ES6 features:</span></p>
-    </div>
-`;
-
-html += studentCards;
-
-// forEach bonus
-html += `
-    <div class="card">
-        <span class="step-label"><i class="fas fa-arrows-spin"></i> Bonus</span>
-        <h2><i class="fas fa-rotate"></i> forEach() Loop Summary</h2>
-`;
-parsedStudents.forEach(function (student) {
-    const { name, semester } = student;
-    html += `
-        <p><span class="value"><i class="fas fa-user"></i> ${name}</span>
-           <span class="label"> — Semester: ${semester}</span></p>
-    `;
+            <h3>${student.name}</h3>
+            <p class="sub">${student.id} &middot; GPA: ${student.gpa}</p>
+            <div class="tags">${chips}</div>
+        </div>`;
 });
-html += `</div>`;
+cardsEl.innerHTML = cardsHtml;
 
-output.innerHTML = html;
+// ── map: create summary strings ────────────────────────────
+const summaries = parsed.map(s => `${s.name} (${s.id}) — GPA: ${s.gpa} — ${s.skills.length} skills`);
+document.getElementById('mapped').innerHTML = summaries.map(s => `<p><strong>&rarr;</strong> ${s}</p>`).join('');
+
+// Console
+console.log('--- JSON Student Data ---');
+console.log('Stringified:', jsonString);
+console.log('Parsed:', parsed);
+console.log('Destructured first:', firstName, firstGpa);
+console.log('Mapped summaries:', summaries);

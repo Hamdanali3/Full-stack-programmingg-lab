@@ -3,201 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab Task 1 - Student Management System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Task 1 — Student Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --muted: #6b7280;
+            --accent: #2563eb;
+            --accent-soft: #eff6ff;
+            --border: #e5e7eb;
+            --radius: 10px;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #e0e0e0;
-            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
+        .wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
 
-        /* ---------- Header ---------- */
-        .header {
-            text-align: center;
-            padding: 40px 20px 30px;
-            animation: fadeDown 0.8s ease;
+        /* Header */
+        .hdr { margin-bottom: 36px; }
+        .hdr .badge {
+            display: inline-block; font-size: .72rem; font-weight: 600;
+            letter-spacing: .06em; text-transform: uppercase;
+            color: var(--accent); background: var(--accent-soft);
+            padding: 4px 12px; border-radius: 6px; margin-bottom: 10px;
         }
-        .header h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #00d2ff, #7b2ff7);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-        .header p {
-            font-size: 1rem;
-            color: #aaa;
-            font-weight: 300;
-        }
+        .hdr h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: 4px; }
+        .hdr p { font-size: .92rem; color: var(--muted); }
 
-        /* ---------- Greet Button ---------- */
-        .btn-greet {
-            display: inline-block;
-            margin: 20px auto;
-            padding: 12px 32px;
-            background: linear-gradient(135deg, #00d2ff, #7b2ff7);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: transform 0.25s, box-shadow 0.25s;
-            box-shadow: 0 4px 20px rgba(123, 47, 247, 0.4);
+        /* Inline JS banner */
+        .inline-bar {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 14px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px; margin-bottom: 32px;
         }
-        .btn-greet:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 30px rgba(123, 47, 247, 0.55);
+        .inline-bar span { font-size: .84rem; color: var(--muted); }
+        .inline-bar button {
+            padding: 8px 20px; font-size: .84rem; font-weight: 500; font-family: inherit;
+            background: var(--accent); color: #fff; border: none; border-radius: 8px;
+            cursor: pointer; transition: background .2s;
         }
-        .btn-greet:active { transform: scale(0.97); }
+        .inline-bar button:hover { background: #1d4ed8; }
 
-        /* ---------- Cards Container ---------- */
-        #students-container {
+        /* Cards */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 28px;
-            max-width: 1100px;
-            margin: 30px auto 50px;
-            padding: 0 10px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
         }
-
-        /* ---------- Student Card ---------- */
-        .student-card {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px 28px;
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
-            animation: fadeUp 0.6s ease both;
-            position: relative;
-            overflow: hidden;
+        .card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 24px;
+            transition: box-shadow .25s, transform .25s;
         }
-        .student-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, #00d2ff, #7b2ff7);
-        }
-        .student-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(123, 47, 247, 0.25);
-        }
-
-        .student-card .avatar {
-            width: 56px; height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00d2ff, #7b2ff7);
+        .card:hover { box-shadow: 0 6px 16px rgba(0,0,0,.06); transform: translateY(-2px); }
+        .card .avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--accent); color: #fff;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; color: #fff; font-weight: 700;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 16px rgba(0, 210, 255, 0.3);
+            font-size: .82rem; font-weight: 600; margin-bottom: 14px;
+        }
+        .card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 12px; }
+        .meta { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+        .meta-row { display: flex; gap: 8px; font-size: .875rem; }
+        .meta-row .k { color: var(--muted); min-width: 72px; }
+        .meta-row .v { font-weight: 500; }
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .tags span {
+            font-size: .76rem; font-weight: 500; padding: 4px 11px;
+            background: #f3f4f6; color: #374151; border-radius: 6px;
         }
 
-        .student-card h2 {
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 14px;
+        .ft {
+            margin-top: 48px; padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: .8rem; color: var(--muted); text-align: center;
         }
 
-        .student-card .info-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 10px 0;
-            font-size: 0.95rem;
-        }
-        .student-card .info-row i {
-            color: #00d2ff;
-            width: 20px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        .student-card .info-row .label {
-            color: #aaa;
-            font-weight: 400;
-        }
-        .student-card .info-row .value {
-            color: #e0e0e0;
-            font-weight: 500;
-        }
-
-        /* ---------- Course Tags ---------- */
-        .courses-list {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
-        }
-        .courses-list li {
-            padding: 5px 14px;
-            border-radius: 50px;
-            font-size: 0.82rem;
-            font-weight: 500;
-            background: rgba(0, 210, 255, 0.12);
-            color: #00d2ff;
-            border: 1px solid rgba(0, 210, 255, 0.25);
-            transition: background 0.25s, transform 0.25s;
-        }
-        .courses-list li:hover {
-            background: rgba(0, 210, 255, 0.25);
-            transform: scale(1.06);
-        }
-
-        /* ---------- Animations ---------- */
-        @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        .student-card:nth-child(1) { animation-delay: 0.1s; }
-        .student-card:nth-child(2) { animation-delay: 0.25s; }
-        .student-card:nth-child(3) { animation-delay: 0.4s; }
-
-        /* ---------- Responsive ---------- */
-        @media (max-width: 768px) {
-            .header h1 { font-size: 1.8rem; }
-            #students-container { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 480px) {
-            body { padding: 10px; }
-            .header h1 { font-size: 1.5rem; }
-            .student-card { padding: 22px 18px; }
+        @media (max-width: 640px) {
+            .wrap { padding: 28px 16px 60px; }
+            .hdr h1 { font-size: 1.4rem; }
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+<div class="wrap">
 
-    <div class="header">
-        <h1><i class="fas fa-graduation-cap"></i> Student Management System</h1>
-        <p>Lab Task 1 &mdash; ES6 Classes, let, const, Template Literals</p>
+    <header class="hdr">
+        <span class="badge">Lab 03 — Task 1</span>
+        <h1>Student Management System</h1>
+        <p>ES6 Classes &middot; let &amp; const &middot; Template Literals &middot; Dynamic Rendering</p>
+    </header>
+
+    <div class="inline-bar">
+        <span>Inline JavaScript demonstration</span>
+        <button onclick="alert('Hello! Welcome to the Student Management System.')">Run Inline JS</button>
     </div>
 
-    <div style="text-align:center;">
-        <button class="btn-greet" onclick="alert('Welcome to Student Management System!')">
-            <i class="fas fa-hand-sparkles"></i>&ensp;Click to Greet
-        </button>
-    </div>
+    <section id="app" class="grid"></section>
 
-    <div id="students-container"></div>
-
-    <script src="script.js"></script>
-
+    <footer class="ft">Developed by Hamdan Ali — Full-Stack Programming Lab 03</footer>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
