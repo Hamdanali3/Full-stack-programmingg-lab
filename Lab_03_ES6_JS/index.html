@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Task 1 - Student Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            text-align: center;
+            color: #7f8c8d;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+        #students-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .student-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .student-card h2 {
+            color: #2980b9;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .student-card p {
+            color: #555;
+            margin: 6px 0;
+            font-size: 1rem;
+        }
+
+        .student-card .label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .courses-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .courses-list li {
+            background: #eaf2f8;
+            color: #2980b9;
+            padding: 4px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 3px 2px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Management System</h1>
+    <h3>Lab Task 1 &mdash; ES6 Classes, let, const, Template Literals</h3>
+
+    <!-- Inline JS Example -->
+    <div style="text-align:center; margin-bottom: 20px;">
+        <button onclick="alert('Welcome to Student Management System!')">Click to Greet (Inline JS)</button>
+    </div>
+
+    <!-- Students will be rendered here dynamically -->
+    <div id="students-container"></div>
+
+    <!-- External JS file linked -->
+    <script src="script.js"></script>
+
+</body>
+</html>
