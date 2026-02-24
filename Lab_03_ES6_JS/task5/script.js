@@ -3,79 +3,91 @@
 // Key = Product ID, Value = Product Object
 // ========================================
 
-// ---------- Create a Map ----------
 const productCatalog = new Map();
 
-// ---------- Add minimum 5 products ----------
+const icons = { Electronics: "fa-laptop", Accessories: "fa-headphones", Peripherals: "fa-keyboard" };
+
 productCatalog.set(101, { name: "Laptop", price: 85000, category: "Electronics" });
 productCatalog.set(102, { name: "Headphones", price: 3500, category: "Accessories" });
 productCatalog.set(103, { name: "Keyboard", price: 2500, category: "Peripherals" });
 productCatalog.set(104, { name: "Mouse", price: 1500, category: "Peripherals" });
 productCatalog.set(105, { name: "Monitor", price: 45000, category: "Electronics" });
 
-// ---------- Display all products ----------
 const output = document.getElementById("output");
 let html = "";
 
-// Card 1: All Products
+// All Products
 html += `
     <div class="card">
-        <h2>All Products (.size: ${productCatalog.size})</h2>
+        <h2><i class="fas fa-boxes-stacked"></i> All Products</h2>
+        <p><span class="label">Total Products (.size):</span>
+           <span class="badge"><i class="fas fa-hashtag"></i> ${productCatalog.size}</span></p>
 `;
 
 productCatalog.forEach(function (product, id) {
     html += `
         <div class="product-row">
-            <p><span class="label">ID:</span> ${id}</p>
-            <p><span class="label">Name:</span> ${product.name}</p>
-            <p><span class="label">Price:</span> Rs. ${product.price}</p>
-            <p><span class="label">Category:</span> ${product.category}</p>
+            <div class="product-icon"><i class="fas ${icons[product.category] || 'fa-box'}"></i></div>
+            <div>
+                <p><span class="value">${product.name}</span>
+                   <span class="category-tag">${product.category}</span></p>
+                <p style="margin:2px 0"><span class="label">ID:</span> <span class="value">${id}</span></p>
+            </div>
+            <div class="product-price">Rs. ${product.price.toLocaleString()}</div>
         </div>
     `;
 });
-
 html += `</div>`;
 
-// ---------- Search by ID ----------
+// Search by ID
 const searchId = 103;
 const foundProduct = productCatalog.get(searchId);
 
 html += `
     <div class="card">
-        <h2>Search Product by ID</h2>
-        <p><span class="label">Searching for ID:</span> ${searchId}</p>
-        <p class="found">Found: ${foundProduct.name} — Rs. ${foundProduct.price} (${foundProduct.category})</p>
+        <h2><i class="fas fa-magnifying-glass"></i> Search by ID</h2>
+        <p><span class="label">Searching for ID:</span> <span class="value">${searchId}</span></p>
+        <div class="found-banner">
+            <i class="fas fa-circle-check"></i>
+            Found: <strong>${foundProduct.name}</strong> — Rs. ${foundProduct.price.toLocaleString()} (${foundProduct.category})
+        </div>
     </div>
 `;
 
-// ---------- Delete a product ----------
+// Delete product
 const deleteId = 104;
 const deletedProduct = productCatalog.get(deleteId);
 productCatalog.delete(deleteId);
 
 html += `
     <div class="card">
-        <h2>Delete Product</h2>
-        <p><span class="label">Deleted ID:</span> ${deleteId} (${deletedProduct.name})</p>
-        <p class="deleted">Product removed from catalog.</p>
-        <p><span class="label">Total Products After Deletion (.size):</span> ${productCatalog.size}</p>
+        <h2><i class="fas fa-trash-can"></i> Delete Product</h2>
+        <p><span class="label">Deleted ID:</span> <span class="value">${deleteId} (${deletedProduct.name})</span></p>
+        <div class="deleted-banner">
+            <i class="fas fa-circle-xmark"></i> Product removed from catalog.
+        </div>
+        <p style="margin-top:12px"><span class="label">Remaining (.size):</span>
+           <span class="badge"><i class="fas fa-hashtag"></i> ${productCatalog.size}</span></p>
     </div>
 `;
 
-// Card 4: Updated Catalog after deletion
+// Updated Catalog
 html += `
     <div class="card">
-        <h2>Updated Catalog (After Deletion)</h2>
+        <h2><i class="fas fa-rotate"></i> Updated Catalog</h2>
 `;
-
 productCatalog.forEach(function (product, id) {
     html += `
         <div class="product-row">
-            <p><span class="label">ID:</span> ${id} — ${product.name} — Rs. ${product.price}</p>
+            <div class="product-icon"><i class="fas ${icons[product.category] || 'fa-box'}"></i></div>
+            <div>
+                <p><span class="value">${product.name}</span>
+                   <span class="category-tag">${product.category}</span></p>
+            </div>
+            <div class="product-price">Rs. ${product.price.toLocaleString()}</div>
         </div>
     `;
 });
-
 html += `</div>`;
 
 output.innerHTML = html;

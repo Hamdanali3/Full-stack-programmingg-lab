@@ -4,43 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab Task 2 - Online Shopping Cart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            padding: 30px;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #e0e0e0;
+            padding: 20px;
         }
-        h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; }
-        h3 { text-align: center; color: #7f8c8d; font-weight: normal; margin-bottom: 30px; }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px 30px;
+            animation: fadeDown 0.8s ease;
+        }
+        .header h1 {
+            font-size: 2.4rem; font-weight: 700;
+            background: linear-gradient(90deg, #f7971e, #ffd200);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header p { font-size: 1rem; color: #aaa; font-weight: 300; margin-top: 6px; }
+
+        .btn-greet {
+            display: inline-block; margin: 20px auto; padding: 12px 32px;
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            color: #1a1a2e; border: none; border-radius: 50px;
+            font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 600;
+            cursor: pointer; transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 20px rgba(247, 151, 30, 0.35);
+        }
+        .btn-greet:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 30px rgba(247, 151, 30, 0.5); }
+
+        #cart-output {
+            max-width: 750px; margin: 30px auto; padding: 0 10px;
+        }
+
         .card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 25px;
-            max-width: 600px;
-            margin: 15px auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px; padding: 28px;
+            margin-bottom: 24px;
+            animation: fadeUp 0.6s ease both;
+            position: relative; overflow: hidden;
         }
-        .card h2 { color: #2980b9; margin-bottom: 12px; font-size: 1.3rem; }
-        .card p { color: #555; margin: 8px 0; font-size: 1rem; line-height: 1.6; }
-        .label { font-weight: bold; color: #2c3e50; }
-        .highlight { background: #eaf2f8; padding: 8px 14px; border-radius: 6px; display: inline-block; margin: 4px 2px; color: #2980b9; font-size: 0.95rem; }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, #f7971e, #ffd200);
+        }
+        .card:hover { box-shadow: 0 16px 50px rgba(247, 151, 30, 0.15); }
+
+        .card h2 {
+            font-size: 1.25rem; font-weight: 600; color: #ffd200;
+            margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+        }
+        .card h2 i { font-size: 1.1rem; }
+
+        .card p { margin: 8px 0; font-size: 0.95rem; line-height: 1.6; }
+        .label { font-weight: 500; color: #aaa; }
+        .value { color: #fff; font-weight: 500; }
+
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .highlight {
+            padding: 6px 16px; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 500;
+            background: rgba(247, 151, 30, 0.12);
+            color: #ffd200; border: 1px solid rgba(255, 210, 0, 0.25);
+            transition: background 0.25s, transform 0.25s;
+        }
+        .highlight:hover { background: rgba(247, 151, 30, 0.25); transform: scale(1.06); }
+
+        @keyframes fadeDown { from { opacity:0; transform:translateY(-30px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+        .card:nth-child(1){animation-delay:.1s} .card:nth-child(2){animation-delay:.2s}
+        .card:nth-child(3){animation-delay:.3s} .card:nth-child(4){animation-delay:.4s}
+
+        @media(max-width:768px){ .header h1{font-size:1.8rem} }
+        @media(max-width:480px){ body{padding:10px} .header h1{font-size:1.5rem} .card{padding:20px 16px} }
     </style>
 </head>
 <body>
 
-    <h1>Online Shopping Cart</h1>
-    <h3>Lab Task 2 &mdash; Rest, Spread &amp; Destructuring</h3>
+    <div class="header">
+        <h1><i class="fas fa-cart-shopping"></i> Online Shopping Cart</h1>
+        <p>Lab Task 2 &mdash; Rest, Spread &amp; Destructuring</p>
+    </div>
 
-    <!-- Inline JS Example -->
-    <div style="text-align:center; margin-bottom: 20px;">
-        <button onclick="alert('Welcome to the Shopping Cart!')">Click to Greet (Inline JS)</button>
+    <div style="text-align:center;">
+        <button class="btn-greet" onclick="alert('Welcome to the Shopping Cart!')">
+            <i class="fas fa-hand-sparkles"></i>&ensp;Click to Greet
+        </button>
     </div>
 
     <div id="cart-output"></div>
 
-    <!-- External JS -->
     <script src="script.js"></script>
-
 </body>
 </html>

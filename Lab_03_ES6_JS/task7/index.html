@@ -4,45 +4,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab Task 7 - Student Data Using JSON</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            padding: 30px;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #141e30, #243b55, #2c5364);
+            color: #e0e0e0;
+            padding: 20px;
         }
-        h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; }
-        h3 { text-align: center; color: #7f8c8d; font-weight: normal; margin-bottom: 30px; }
+        .header {
+            text-align: center; padding: 40px 20px 30px;
+            animation: fadeDown 0.8s ease;
+        }
+        .header h1 {
+            font-size: 2.4rem; font-weight: 700;
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header p { font-size: 1rem; color: #aaa; font-weight: 300; margin-top: 6px; }
+        .header .badges {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 14px;
+        }
+        .header .tech-badge {
+            padding: 4px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 500;
+            background: rgba(240, 147, 251, 0.08); color: #f093fb;
+            border: 1px solid rgba(240, 147, 251, 0.2);
+        }
+
+        .btn-greet {
+            display: inline-block; margin: 10px auto 30px; padding: 12px 32px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: #fff; border: none; border-radius: 50px;
+            font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 600;
+            cursor: pointer; transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 20px rgba(245, 87, 108, 0.35);
+        }
+        .btn-greet:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 30px rgba(245, 87, 108, 0.5); }
+
+        #output { max-width: 800px; margin: 0 auto; padding: 0 10px; }
+
         .card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 25px;
-            max-width: 650px;
-            margin: 15px auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px; padding: 28px;
+            margin-bottom: 24px;
+            animation: fadeUp 0.6s ease both;
+            position: relative; overflow: hidden;
         }
-        .card h2 { color: #c0392b; margin-bottom: 12px; }
-        .card p { color: #555; margin: 8px 0; font-size: 1rem; line-height: 1.6; }
-        .label { font-weight: bold; color: #2c3e50; }
-        .student-row { background: #fdedec; padding: 12px 16px; border-radius: 8px; margin: 8px 0; }
-        .json-block { background: #f9f9f9; padding: 14px; border-radius: 8px; font-family: monospace; font-size: 0.9rem; overflow-x: auto; white-space: pre-wrap; color: #333; border: 1px solid #ddd; margin: 8px 0; }
-        .course-tag { background: #fadbd8; color: #c0392b; padding: 4px 10px; border-radius: 5px; display: inline-block; margin: 3px 2px; font-size: 0.9rem; }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+        }
+
+        .card h2 {
+            font-size: 1.25rem; font-weight: 600; color: #f093fb;
+            margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+        }
+        .card p { margin: 8px 0; font-size: 0.95rem; }
+        .label { font-weight: 500; color: #8892b0; }
+        .value { color: #ccd6f6; font-weight: 500; }
+
+        .json-block {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 20px; border-radius: 14px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82rem; color: #a8b2d1;
+            overflow-x: auto; white-space: pre-wrap;
+            line-height: 1.7; margin: 12px 0;
+            max-height: 300px; overflow-y: auto;
+        }
+        .json-block::-webkit-scrollbar { width: 6px; }
+        .json-block::-webkit-scrollbar-thumb { background: rgba(240, 147, 251, 0.3); border-radius: 3px; }
+
+        .student-row {
+            background: rgba(240, 147, 251, 0.04);
+            border: 1px solid rgba(240, 147, 251, 0.1);
+            border-radius: 16px; padding: 22px; margin: 14px 0;
+            display: grid; grid-template-columns: 52px 1fr;
+            gap: 18px; align-items: start;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .student-row:hover {
+            transform: translateX(6px);
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.08);
+        }
+        .avatar {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; color: #fff; font-size: 0.95rem;
+        }
+
+        .course-tag {
+            padding: 4px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 500;
+            background: rgba(240, 147, 251, 0.08);
+            color: #f093fb; border: 1px solid rgba(240, 147, 251, 0.2);
+            display: inline-block; margin: 3px 2px;
+            transition: background 0.25s, transform 0.25s;
+        }
+        .course-tag:hover { background: rgba(240, 147, 251, 0.2); transform: scale(1.05); }
+
+        .step-label {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(245, 87, 108, 0.12);
+            color: #f5576c; padding: 3px 12px; border-radius: 50px;
+            font-size: 0.75rem; font-weight: 600; margin-bottom: 10px;
+        }
+
+        @keyframes fadeDown { from{opacity:0;transform:translateY(-30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+
+        @media(max-width:768px){ .header h1{font-size:1.8rem} .student-row{grid-template-columns:1fr} }
+        @media(max-width:480px){ body{padding:10px} .header h1{font-size:1.5rem} .card{padding:20px 16px} }
     </style>
 </head>
 <body>
 
-    <h1>Student Data Using JSON</h1>
-    <h3>Lab Task 7 &mdash; JSON.stringify, JSON.parse, Destructuring, forEach/map</h3>
+    <div class="header">
+        <h1><i class="fas fa-code"></i> Student Data Using JSON</h1>
+        <p>Lab Task 7 &mdash; JSON.stringify, JSON.parse, Destructuring, forEach/map</p>
+        <div class="badges">
+            <span class="tech-badge"><i class="fas fa-brackets-curly"></i> JSON.stringify</span>
+            <span class="tech-badge"><i class="fas fa-file-import"></i> JSON.parse</span>
+            <span class="tech-badge"><i class="fas fa-scissors"></i> Destructuring</span>
+            <span class="tech-badge"><i class="fas fa-arrows-spin"></i> forEach / map</span>
+        </div>
+    </div>
 
-    <!-- Inline JS -->
-    <div style="text-align:center; margin-bottom: 20px;">
-        <button onclick="alert('Welcome to Student JSON Demo!')">Click to Greet (Inline JS)</button>
+    <div style="text-align:center;">
+        <button class="btn-greet" onclick="alert('Welcome to Student JSON Demo!')">
+            <i class="fas fa-hand-sparkles"></i>&ensp;Click to Greet
+        </button>
     </div>
 
     <div id="output"></div>
 
-    <!-- External JS -->
     <script src="script.js"></script>
-
 </body>
 </html>

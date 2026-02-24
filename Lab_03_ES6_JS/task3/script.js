@@ -5,18 +5,21 @@
 
 const output = document.getElementById("output");
 
-// Show loading message
-output.innerHTML = `<p class="loading">Loading users... please wait 3 seconds...</p>`;
+// Show loading animation
+output.innerHTML = `
+    <div class="loading">
+        <i class="fas fa-spinner fa-spin"></i>
+        Loading users... please wait 3 seconds...
+    </div>`;
 
 // ---------- Boolean flag to simulate success/failure ----------
-const isServerOnline = true; // Change to false to see the reject/error case
+const isServerOnline = true; // Change to false to see reject/error
 
-// ---------- Promise-based fetchUsers function ----------
+// ---------- Promise-based fetchUsers ----------
 function fetchUsers() {
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             if (isServerOnline) {
-                // Resolve with array of user objects
                 resolve([
                     { id: 1, name: "Ali Ahmed", email: "ali@example.com", role: "Student" },
                     { id: 2, name: "Hassan Khan", email: "hassan@example.com", role: "Admin" },
@@ -24,20 +27,23 @@ function fetchUsers() {
                     { id: 4, name: "Fatima Noor", email: "fatima@example.com", role: "Teacher" }
                 ]);
             } else {
-                // Reject with error message
                 reject("Server is offline. Failed to fetch users!");
             }
-        }, 3000); // 3 seconds delay
+        }, 3000);
     });
 }
 
-// ---------- Using .then() and .catch() ----------
+// ---------- .then() and .catch() ----------
 fetchUsers()
     .then(function (users) {
+        const getInitials = (n) => n.split(" ").map(w => w[0]).join("");
+        const roleIcon = { Student: "fa-user-graduate", Admin: "fa-user-shield", Teacher: "fa-chalkboard-teacher" };
+
         let html = `
             <div class="card">
-                <h2>Users Loaded Successfully</h2>
-                <p><span class="label">Total Users:</span> ${users.length}</p>
+                <h2><i class="fas fa-check-circle"></i> Users Loaded Successfully</h2>
+                <p><span class="label">Total Users:</span> <span class="value">${users.length}</span></p>
+                <p class="success"><i class="fas fa-server"></i> Server responded in 3 seconds</p>
             </div>
         `;
 
@@ -45,10 +51,12 @@ fetchUsers()
             html += `
                 <div class="card">
                     <div class="user-row">
-                        <p><span class="label">ID:</span> ${user.id}</p>
-                        <p><span class="label">Name:</span> ${user.name}</p>
-                        <p><span class="label">Email:</span> ${user.email}</p>
-                        <p><span class="label">Role:</span> ${user.role}</p>
+                        <div class="user-avatar">${getInitials(user.name)}</div>
+                        <div class="user-info">
+                            <p><span class="label">Name:</span> <span class="value">${user.name}</span></p>
+                            <p><span class="label">Email:</span> <span class="value">${user.email}</span></p>
+                            <p><span class="label">Role:</span> <span class="value"><i class="fas ${roleIcon[user.role] || 'fa-user'}"></i> ${user.role}</span></p>
+                        </div>
                     </div>
                 </div>
             `;
@@ -59,7 +67,7 @@ fetchUsers()
     .catch(function (error) {
         output.innerHTML = `
             <div class="card">
-                <h2 class="error">Error Loading Data</h2>
+                <h2 class="error"><i class="fas fa-exclamation-triangle"></i> Error Loading Data</h2>
                 <p class="error">${error}</p>
             </div>
         `;

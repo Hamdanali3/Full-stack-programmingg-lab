@@ -3,7 +3,6 @@
 // Using ES6 Set and for...of
 // ========================================
 
-// ---------- Create a Set to store registered courses ----------
 const registeredCourses = new Set();
 
 // ---------- Add courses dynamically ----------
@@ -19,10 +18,8 @@ const duplicateResults = [];
 
 duplicateAttempts.forEach(function (course) {
     const sizeBefore = registeredCourses.size;
-    registeredCourses.add(course); // Set ignores duplicates
-    const sizeAfter = registeredCourses.size;
-
-    if (sizeBefore === sizeAfter) {
+    registeredCourses.add(course);
+    if (sizeBefore === registeredCourses.size) {
         duplicateResults.push(course);
     }
 });
@@ -30,41 +27,44 @@ duplicateAttempts.forEach(function (course) {
 // ---------- Loop through Set using for...of ----------
 let courseListHTML = "";
 for (const course of registeredCourses) {
-    courseListHTML += `<span class="course-tag">${course}</span> `;
+    courseListHTML += `<span class="course-tag"><i class="fas fa-bookmark"></i> ${course}</span>`;
 }
 
-// ---------- Display results in HTML ----------
+// ---------- Display results ----------
 const output = document.getElementById("output");
 
-let html = "";
-
-// Card 1: All Registered Courses
-html += `
+let html = `
     <div class="card">
-        <h2>All Registered Courses (for...of loop)</h2>
-        <p><span class="label">Total Unique Courses (.size):</span> ${registeredCourses.size}</p>
-        <p>${courseListHTML}</p>
+        <h2><i class="fas fa-list-check"></i> Registered Courses (for...of)</h2>
+        <p><span class="label">Total Unique Courses (.size):</span>
+           <span class="badge"><i class="fas fa-hashtag"></i> ${registeredCourses.size}</span>
+        </p>
+        <div class="tag-container">${courseListHTML}</div>
     </div>
-`;
 
-// Card 2: Duplicate Attempts
-html += `
     <div class="card">
-        <h2>Duplicate Registration Attempts</h2>
-        <p><span class="label">Attempted Duplicates:</span></p>
-        <p>${duplicateAttempts.map(c => `<span class="course-tag">${c}</span>`).join(" ")}</p>
-        <p class="duplicate">These courses were already registered. Set prevented duplicates!</p>
-        <p><span class="label">Total Courses After Duplicates:</span> ${registeredCourses.size} (unchanged)</p>
+        <h2><i class="fas fa-ban"></i> Duplicate Attempts</h2>
+        <p><span class="label">Tried to Add:</span></p>
+        <div class="tag-container">
+            ${duplicateAttempts.map(c => `<span class="course-tag">${c}</span>`).join("")}
+        </div>
+        <div class="duplicate">
+            <i class="fas fa-triangle-exclamation"></i>
+            These courses already exist — Set prevented duplicates!
+        </div>
+        <p style="margin-top:12px"><span class="label">Count After Attempts:</span>
+           <span class="badge"><i class="fas fa-hashtag"></i> ${registeredCourses.size} (unchanged)</span>
+        </p>
     </div>
-`;
 
-// Card 3: Checking if a course exists
-const checkCourse = "React";
-html += `
     <div class="card">
-        <h2>Check Course Existence</h2>
-        <p><span class="label">Has "${checkCourse}"?</span> ${registeredCourses.has(checkCourse) ? "Yes" : "No"}</p>
-        <p><span class="label">Has "Python"?</span> ${registeredCourses.has("Python") ? "Yes" : "No"}</p>
+        <h2><i class="fas fa-magnifying-glass"></i> Check Course Existence</h2>
+        <p><span class="label">Has "React"?</span>
+           <span class="value">${registeredCourses.has("React") ? '<i class="fas fa-circle-check" style="color:#00e676"></i> Yes' : '<i class="fas fa-circle-xmark" style="color:#ff6b6b"></i> No'}</span>
+        </p>
+        <p><span class="label">Has "Python"?</span>
+           <span class="value">${registeredCourses.has("Python") ? '<i class="fas fa-circle-check" style="color:#00e676"></i> Yes' : '<i class="fas fa-circle-xmark" style="color:#ff6b6b"></i> No'}</span>
+        </p>
     </div>
 `;
 

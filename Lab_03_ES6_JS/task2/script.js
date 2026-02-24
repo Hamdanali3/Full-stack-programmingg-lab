@@ -4,67 +4,50 @@
 // ========================================
 
 // ---------- Rest Operator (...items) ----------
-// Collects multiple product arguments into an array
 function addToCart(...items) {
     return items;
 }
 
-// Adding products using the rest operator
 const cart = addToCart("Laptop", "Mouse", "Keyboard", "Monitor", "Headphones");
 
 // ---------- Spread Operator ----------
-// Clone the cart into a new array using spread
 const clonedCart = [...cart];
-
-// Add an extra item to the cloned cart (original stays unchanged)
 const updatedCart = [...clonedCart, "USB Cable", "Webcam"];
 
 // ---------- Array Destructuring ----------
-// Extract the first product and remaining products
 const [firstProduct, ...remainingProducts] = updatedCart;
 
-// ---------- Display Results in HTML ----------
+// ---------- Display Results ----------
 const container = document.getElementById("cart-output");
 
-let html = "";
+const buildTags = (arr) => arr.map(item =>
+    `<span class="highlight"><i class="fas fa-box-open"></i> ${item}</span>`
+).join("");
 
-// Card 1: Original Cart
-html += `
+let html = `
     <div class="card">
-        <h2>Original Cart (Rest Operator)</h2>
-        <p><span class="label">Total Items:</span> ${cart.length}</p>
-        <p><span class="label">Products:</span></p>
-        <p>${cart.map(item => `<span class="highlight">${item}</span>`).join(" ")}</p>
+        <h2><i class="fas fa-basket-shopping"></i> Original Cart (Rest Operator)</h2>
+        <p><span class="label">Total Items:</span> <span class="value">${cart.length}</span></p>
+        <div class="tag-container">${buildTags(cart)}</div>
     </div>
-`;
 
-// Card 2: Cloned Cart
-html += `
     <div class="card">
-        <h2>Cloned Cart (Spread Operator)</h2>
-        <p><span class="label">Total Items:</span> ${clonedCart.length}</p>
-        <p><span class="label">Products:</span></p>
-        <p>${clonedCart.map(item => `<span class="highlight">${item}</span>`).join(" ")}</p>
+        <h2><i class="fas fa-clone"></i> Cloned Cart (Spread Operator)</h2>
+        <p><span class="label">Total Items:</span> <span class="value">${clonedCart.length}</span></p>
+        <div class="tag-container">${buildTags(clonedCart)}</div>
     </div>
-`;
 
-// Card 3: Updated Cart with extra items
-html += `
     <div class="card">
-        <h2>Updated Cart (Spread - Added More)</h2>
-        <p><span class="label">Total Items:</span> ${updatedCart.length}</p>
-        <p><span class="label">Products:</span></p>
-        <p>${updatedCart.map(item => `<span class="highlight">${item}</span>`).join(" ")}</p>
+        <h2><i class="fas fa-cart-plus"></i> Updated Cart (Spread &mdash; Added More)</h2>
+        <p><span class="label">Total Items:</span> <span class="value">${updatedCart.length}</span></p>
+        <div class="tag-container">${buildTags(updatedCart)}</div>
     </div>
-`;
 
-// Card 4: Destructured Output
-html += `
     <div class="card">
-        <h2>Destructured Cart</h2>
-        <p><span class="label">First Product:</span> ${firstProduct}</p>
+        <h2><i class="fas fa-scissors"></i> Destructured Cart</h2>
+        <p><span class="label">First Product:</span> <span class="value">${firstProduct}</span></p>
         <p><span class="label">Remaining Products:</span></p>
-        <p>${remainingProducts.map(item => `<span class="highlight">${item}</span>`).join(" ")}</p>
+        <div class="tag-container">${buildTags(remainingProducts)}</div>
     </div>
 `;
 

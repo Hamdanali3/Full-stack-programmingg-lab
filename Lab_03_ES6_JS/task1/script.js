@@ -6,13 +6,18 @@
 // ---------- ES6 Class ----------
 class Student {
     constructor(id, name, semester, courses) {
-        this.id = id;           // const-like property (won't reassign)
+        this.id = id;
         this.name = name;
         this.semester = semester;
-        this.courses = courses; // array of courses
+        this.courses = courses;
     }
 
-    // Method to return an HTML card using template literals
+    // Get initials for avatar
+    getInitials() {
+        return this.name.split(" ").map(w => w[0]).join("");
+    }
+
+    // Method to return a styled HTML card using template literals
     getCard() {
         const courseItems = this.courses
             .map(course => `<li>${course}</li>`)
@@ -20,10 +25,22 @@ class Student {
 
         return `
             <div class="student-card">
+                <div class="avatar">${this.getInitials()}</div>
                 <h2>${this.name}</h2>
-                <p><span class="label">ID:</span> ${this.id}</p>
-                <p><span class="label">Semester:</span> ${this.semester}</p>
-                <p><span class="label">Courses:</span></p>
+                <div class="info-row">
+                    <i class="fas fa-id-badge"></i>
+                    <span class="label">ID:</span>
+                    <span class="value">${this.id}</span>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span class="label">Semester:</span>
+                    <span class="value">${this.semester}</span>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-book"></i>
+                    <span class="label">Courses:</span>
+                </div>
                 <ul class="courses-list">${courseItems}</ul>
             </div>
         `;
@@ -31,22 +48,18 @@ class Student {
 }
 
 // ---------- Creating Student Objects (using let & const) ----------
-
 const student1 = new Student(101, "Ali Ahmed", "6th", ["JavaScript", "HTML", "CSS", "React"]);
 const student2 = new Student(102, "Hassan Khan", "4th", ["Python", "Data Structures", "OOP"]);
 const student3 = new Student(103, "Sara Malik", "5th", ["Node.js", "MongoDB", "Express"]);
 
-// Storing all students in an array using const (reference won't change)
+// Storing in array using const
 const students = [student1, student2, student3];
 
 // ---------- Displaying Students Dynamically ----------
-
-// Using let for block-scoped variable
 let htmlOutput = "";
 
 for (let i = 0; i < students.length; i++) {
     htmlOutput += students[i].getCard();
 }
 
-// Render all student cards into the container using innerHTML
 document.getElementById("students-container").innerHTML = htmlOutput;

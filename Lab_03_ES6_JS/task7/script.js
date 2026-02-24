@@ -10,48 +10,50 @@ const student3 = { name: "Sara Malik", age: 22, semester: "5th", courses: ["Node
 
 const students = [student1, student2, student3];
 
-// ---------- Step 2: Convert objects to JSON using JSON.stringify() ----------
+// ---------- Step 2: JSON.stringify() ----------
 const jsonString = JSON.stringify(students, null, 2);
 
-// ---------- Step 3: Convert JSON back to objects using JSON.parse() ----------
+// ---------- Step 3: JSON.parse() ----------
 const parsedStudents = JSON.parse(jsonString);
 
-// ---------- Display results in HTML ----------
+// ---------- Display results ----------
 const output = document.getElementById("output");
-let html = "";
+const getInitials = (n) => n.split(" ").map(w => w[0]).join("");
 
-// Card 1: JSON String Output
-html += `
+let html = `
     <div class="card">
-        <h2>Step 1 & 2: Objects → JSON.stringify()</h2>
-        <p><span class="label">JSON String:</span></p>
+        <span class="step-label"><i class="fas fa-1"></i> Step 1 & 2</span>
+        <h2><i class="fas fa-file-code"></i> Objects → JSON.stringify()</h2>
+        <p><span class="label">Converted ${students.length} student objects to JSON string:</span></p>
         <div class="json-block">${jsonString}</div>
     </div>
-`;
 
-// Card 2: Parsed back from JSON
-html += `
     <div class="card">
-        <h2>Step 3: JSON.parse() → Back to Objects</h2>
-        <p><span class="label">Parsed Successfully!</span> ${parsedStudents.length} students recovered.</p>
+        <span class="step-label"><i class="fas fa-3"></i> Step 3</span>
+        <h2><i class="fas fa-file-import"></i> JSON.parse() → Back to Objects</h2>
+        <p><span class="label">Status:</span>
+           <span class="value" style="color:#00e676"><i class="fas fa-circle-check"></i> Parsed successfully!</span></p>
+        <p><span class="label">Students Recovered:</span> <span class="value">${parsedStudents.length}</span></p>
     </div>
 `;
 
-// ---------- Step 4 & 5 & 6: Destructuring + forEach/map + innerHTML ----------
-// Using .map() to loop through students and build cards
+// ---------- Step 4, 5 & 6: Destructuring + map + innerHTML ----------
 const studentCards = parsedStudents.map(function (student) {
-    // Step 4: Destructuring to extract properties
     const { name, age, semester, courses } = student;
-
-    const courseTags = courses.map(c => `<span class="course-tag">${c}</span>`).join(" ");
+    const courseTags = courses.map(c => `<span class="course-tag"><i class="fas fa-bookmark"></i> ${c}</span>`).join("");
 
     return `
         <div class="card">
             <div class="student-row">
-                <p><span class="label">Name:</span> ${name}</p>
-                <p><span class="label">Age:</span> ${age}</p>
-                <p><span class="label">Semester:</span> ${semester}</p>
-                <p><span class="label">Courses:</span> ${courseTags}</p>
+                <div class="avatar">${getInitials(name)}</div>
+                <div>
+                    <p><span class="value" style="font-size:1.1rem;font-weight:600">${name}</span></p>
+                    <p><span class="label"><i class="fas fa-birthday-cake"></i> Age:</span> <span class="value">${age}</span>
+                       &nbsp;&nbsp;
+                       <span class="label"><i class="fas fa-calendar"></i> Semester:</span> <span class="value">${semester}</span></p>
+                    <p><span class="label"><i class="fas fa-book"></i> Courses:</span></p>
+                    <div style="margin-top:6px">${courseTags}</div>
+                </div>
             </div>
         </div>
     `;
@@ -59,20 +61,27 @@ const studentCards = parsedStudents.map(function (student) {
 
 html += `
     <div class="card">
-        <h2>Step 4, 5 & 6: Destructuring + map() + innerHTML</h2>
-        <p><span class="label">All Students Displayed Below:</span></p>
+        <span class="step-label"><i class="fas fa-4"></i> Step 4, 5 & 6</span>
+        <h2><i class="fas fa-users"></i> Destructuring + map() + innerHTML</h2>
+        <p><span class="label">All ${parsedStudents.length} students displayed using ES6 features:</span></p>
     </div>
 `;
 
 html += studentCards;
 
-// Step 6 bonus: forEach example
-html += `<div class="card"><h2>forEach() Loop Output</h2>`;
+// forEach bonus
+html += `
+    <div class="card">
+        <span class="step-label"><i class="fas fa-arrows-spin"></i> Bonus</span>
+        <h2><i class="fas fa-rotate"></i> forEach() Loop Summary</h2>
+`;
 parsedStudents.forEach(function (student) {
     const { name, semester } = student;
-    html += `<p><span class="label">${name}</span> — Semester: ${semester}</p>`;
+    html += `
+        <p><span class="value"><i class="fas fa-user"></i> ${name}</span>
+           <span class="label"> — Semester: ${semester}</span></p>
+    `;
 });
 html += `</div>`;
 
-// Step 5: Display all using innerHTML
 output.innerHTML = html;
