@@ -28,6 +28,8 @@ operationSelect.addEventListener("change", function () {
     subtract: "−",
     multiply: "×",
     divide: "÷",
+    power: "^",
+    modulus: "%",
   };
   opSymbolEl.textContent = symbols[this.value] || "?";
 });
@@ -50,6 +52,13 @@ function calculateResult(a, b, operation) {
       return { error: true, message: "Cannot divide by zero!" };
     }
     result = a / b;
+  } else if (operation === "power") {
+    result = Math.pow(a, b);
+  } else if (operation === "modulus") {
+    if (b === 0) {
+      return { error: true, message: "Cannot take modulus by zero!" };
+    }
+    result = a % b;
   } else {
     return { error: true, message: "Invalid operation selected." };
   }
@@ -107,6 +116,8 @@ function displayResult(a, b, operation, calcResult) {
     subtract: "−",
     multiply: "×",
     divide: "÷",
+    power: "^",
+    modulus: "%",
   };
   const symbol = symbols[operation];
 
