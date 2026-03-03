@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4 — Tabbed Content &amp; Smooth Scroll</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="container">
+            <a href="../index.html" class="back-nav">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Lab Tasks
+            </a>
+
+            <div class="task-header">
+                <div class="flex gap-sm mb-sm">
+                    <span class="badge badge-indigo">DOM</span>
+                    <span class="badge badge-amber">Effects</span>
+                    <span class="badge badge-cyan">Events</span>
+                </div>
+                <h1 class="text-gradient">Tabbed Content &amp; Smooth Scroll</h1>
+                <p class="task-desc">Navigate between content tabs with animated transitions, progress indicator, and smooth scroll.</p>
+            </div>
+
+            <!-- Tab navigation -->
+            <div class="tabs-container panel" style="padding:0;overflow:hidden;">
+                <nav class="tabs-nav" id="tabsNav">
+                    <button class="tab-btn active" data-tab="overview">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                        Overview
+                    </button>
+                    <button class="tab-btn" data-tab="features">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        Features
+                    </button>
+                    <button class="tab-btn" data-tab="setup">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                        Setup
+                    </button>
+                    <button class="tab-btn" data-tab="examples">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        Examples
+                    </button>
+                    <button class="tab-btn" data-tab="faq">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+                        FAQ
+                    </button>
+                    <div class="tab-indicator" id="tabIndicator"></div>
+                </nav>
+
+                <div class="tabs-content" id="tabsContent">
+                    <!-- Overview -->
+                    <div class="tab-pane active" id="pane-overview">
+                        <div class="pane-inner">
+                            <h3>What is jQuery?</h3>
+                            <p>jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.</p>
+                            <div class="info-cards">
+                                <div class="info-card">
+                                    <span class="info-num">98%</span>
+                                    <span class="info-label">Browser Compatibility</span>
+                                </div>
+                                <div class="info-card">
+                                    <span class="info-num">87KB</span>
+                                    <span class="info-label">Minified Size</span>
+                                </div>
+                                <div class="info-card">
+                                    <span class="info-num">15+</span>
+                                    <span class="info-label">Years Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="tab-pane" id="pane-features">
+                        <div class="pane-inner">
+                            <h3>Core Features</h3>
+                            <div class="feature-list">
+                                <div class="feature-item"><span class="feature-icon">&#9672;</span><div><strong>DOM Traversal & Manipulation</strong><p>Select elements with CSS-style selectors and modify content, attributes, and structure dynamically.</p></div></div>
+                                <div class="feature-item"><span class="feature-icon">&#9672;</span><div><strong>Event Handling</strong><p>Attach and manage events consistently across all browsers with simple methods like .on(), .click(), .hover().</p></div></div>
+                                <div class="feature-item"><span class="feature-icon">&#9672;</span><div><strong>Effects & Animations</strong><p>Built-in methods for show, hide, fade, slide, and custom animate with easing support.</p></div></div>
+                                <div class="feature-item"><span class="feature-icon">&#9672;</span><div><strong>Ajax</strong><p>Simplified asynchronous HTTP requests with $.ajax(), $.get(), and $.post() methods.</p></div></div>
+                                <div class="feature-item"><span class="feature-icon">&#9672;</span><div><strong>Chaining</strong><p>Apply multiple methods on the same selection in a single statement for concise code.</p></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Setup -->
+                    <div class="tab-pane" id="pane-setup">
+                        <div class="pane-inner">
+                            <h3>Installation Methods</h3>
+                            <div class="setup-block">
+                                <h4>CDN (Recommended)</h4>
+                                <div class="code-block"><code>&lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;</code></div>
+                            </div>
+                            <div class="setup-block">
+                                <h4>Local Download</h4>
+                                <div class="code-block"><code>&lt;script src="js/jquery-3.6.0.min.js"&gt;&lt;/script&gt;</code></div>
+                            </div>
+                            <div class="setup-block">
+                                <h4>npm</h4>
+                                <div class="code-block"><code>npm install jquery</code></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Examples -->
+                    <div class="tab-pane" id="pane-examples">
+                        <div class="pane-inner">
+                            <h3>Code Examples</h3>
+                            <div class="setup-block">
+                                <h4>DOM Manipulation</h4>
+                                <div class="code-block"><code>$("#changeText").click(function(){<br>&nbsp;&nbsp;$("#domText").text("Changed via jQuery!");<br>});</code></div>
+                            </div>
+                            <div class="setup-block">
+                                <h4>Effects & Animations</h4>
+                                <div class="code-block"><code>$("#toggleBox").click(function(){<br>&nbsp;&nbsp;$("#box").slideToggle(400);<br>});</code></div>
+                            </div>
+                            <div class="setup-block">
+                                <h4>Chaining</h4>
+                                <div class="code-block"><code>$("#text")<br>&nbsp;&nbsp;.css("color","red")<br>&nbsp;&nbsp;.fadeOut(500)<br>&nbsp;&nbsp;.fadeIn(500);</code></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ -->
+                    <div class="tab-pane" id="pane-faq">
+                        <div class="pane-inner">
+                            <h3>Frequently Asked Questions</h3>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <button class="faq-q">Is jQuery still relevant in 2026?</button>
+                                    <div class="faq-a"><p>Yes. jQuery powers millions of websites, WordPress themes, and is invaluable for rapid prototyping and legacy system maintenance.</p></div>
+                                </div>
+                                <div class="faq-item">
+                                    <button class="faq-q">Can I use jQuery with React or Vue?</button>
+                                    <div class="faq-a"><p>It's generally discouraged because of conflicting DOM manipulation approaches, but it can work for specific third-party plugin integrations.</p></div>
+                                </div>
+                                <div class="faq-item">
+                                    <button class="faq-q">What's the difference between .on() and .click()?</button>
+                                    <div class="faq-a"><p>.on() is more versatile — it supports event delegation for dynamically added elements, while .click() is a shorthand that does not.</p></div>
+                                </div>
+                                <div class="faq-item">
+                                    <button class="faq-q">How do I handle Ajax errors in jQuery?</button>
+                                    <div class="faq-a"><p>Use the .fail() callback or the error parameter in $.ajax({ error: function(xhr, status, err) { ... } }).</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+/* Task 5 — Chained Style Editor */
+
+.editor-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+    align-items: start;
+}
+
+/* Preview */
+.preview-panel { position: sticky; top: 30px; }
+.preview-box {
+    padding: 28px;
+    background: #f8fafc;
+    border-radius: var(--r-md);
+    border: 1px solid #e2e8f0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    min-height: 180px;
+}
+
+/* Controls */
+.controls-panel { max-height: 80vh; overflow-y: auto; }
+.control-group {
+    margin-bottom: 20px;
+}
+.control-group label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+.control-val {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--g1);
+    font-size: 0.78rem;
+}
+
+/* Range input */
+.range-input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+.range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--grad-primary);
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.3);
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+.range-input::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+/* Color swatches */
+.color-swatches {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.swatch {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--t-fast);
+    position: relative;
+}
+.swatch:hover { transform: scale(1.1); }
+.swatch.active {
+    border-color: var(--g1);
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.3);
+}
+
+/* Toggle buttons */
+.toggle-btns {
+    display: flex;
+    gap: 8px;
+}
+.toggle-btn {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--t-fast);
+}
+.toggle-btn:hover { border-color: rgba(99,102,241,0.3); color: var(--text-primary); }
+.toggle-btn.active {
+    background: rgba(99,102,241,0.1);
+    border-color: rgba(99,102,241,0.3);
+    color: var(--g1);
+}
+
+/* Presets */
+.preset-btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .editor-layout {
+        grid-template-columns: 1fr;
+    }
+    .preview-panel { position: static; }
+}

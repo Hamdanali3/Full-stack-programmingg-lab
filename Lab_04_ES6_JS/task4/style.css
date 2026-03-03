@@ -1,0 +1,186 @@
+/* Task 4 — Tabbed Content with Smooth Scroll */
+
+/* Tab navigation */
+.tabs-nav {
+    display: flex;
+    gap: 2px;
+    padding: 8px 8px 0;
+    background: #f8fafc;
+    position: relative;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.tabs-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    transition: all var(--t-base);
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
+}
+.tab-btn:hover { color: var(--text-secondary); background: rgba(99,102,241,0.04); }
+.tab-btn.active { color: var(--g1); background: #ffffff; }
+.tab-btn svg { flex-shrink: 0; }
+
+/* Animated indicator */
+.tab-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background: var(--grad-primary);
+    border-radius: 2px;
+    transition: left 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1);
+    z-index: 3;
+}
+
+/* Tab content */
+.tabs-content {
+    position: relative;
+    min-height: 300px;
+}
+.tab-pane {
+    display: none;
+    padding: 0;
+}
+.tab-pane.active { display: block; animation: fadeInUp 0.4s ease both; }
+.pane-inner {
+    padding: 28px;
+}
+.pane-inner h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+.pane-inner p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+/* Info cards */
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+.info-card {
+    background: rgba(99,102,241,0.04);
+    border: 1px solid rgba(99,102,241,0.1);
+    border-radius: var(--r-md);
+    padding: 18px;
+    text-align: center;
+}
+.info-num {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--g1);
+    margin-bottom: 4px;
+}
+.info-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Feature list */
+.feature-list { display: flex; flex-direction: column; gap: 14px; }
+.feature-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 14px;
+    background: #f8fafc;
+    border-radius: var(--r-sm);
+    border: 1px solid #e2e8f0;
+}
+.feature-icon {
+    color: var(--g1);
+    font-size: 0.9rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+.feature-item strong { color: var(--text-primary); font-size: 0.95rem; }
+.feature-item p { margin: 4px 0 0; font-size: 0.85rem; color: var(--text-secondary); }
+
+/* Setup blocks */
+.setup-block {
+    margin-bottom: 20px;
+}
+.setup-block h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+.code-block {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--r-sm);
+    padding: 14px 18px;
+    overflow-x: auto;
+}
+.code-block code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--g1);
+    line-height: 1.7;
+}
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: 8px; }
+.faq-item {
+    border: 1px solid #e2e8f0;
+    border-radius: var(--r-sm);
+    overflow: hidden;
+}
+.faq-q {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 14px 18px;
+    background: #f8fafc;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    transition: background var(--t-base);
+}
+.faq-q:hover { background: #f1f5f9; }
+.faq-q::after {
+    content: '+';
+    margin-left: auto;
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    transition: transform var(--t-base);
+}
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a {
+    display: none;
+    padding: 14px 18px;
+    background: #ffffff;
+}
+.faq-a p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+    .tab-btn { padding: 10px 14px; font-size: 0.8rem; }
+    .tab-btn svg { display: none; }
+    .pane-inner { padding: 20px; }
+}

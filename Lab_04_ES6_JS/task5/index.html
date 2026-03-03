@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5 — Chained Style Editor</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="container">
+            <a href="../index.html" class="back-nav">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Lab Tasks
+            </a>
+
+            <div class="task-header">
+                <div class="flex gap-sm mb-sm">
+                    <span class="badge badge-rose">CSS</span>
+                    <span class="badge badge-cyan">Chaining</span>
+                    <span class="badge badge-indigo">Events</span>
+                </div>
+                <h1 class="text-gradient">Chained Style Editor</h1>
+                <p class="task-desc">Edit text styles using chained jQuery methods — font, color, spacing, shadows, and one-click presets.</p>
+            </div>
+
+            <div class="editor-layout">
+                <!-- Live Preview -->
+                <div class="panel preview-panel">
+                    <div class="panel-title"><span class="dot"></span> Live Preview</div>
+                    <div class="preview-box" id="textBlock">
+                        jQuery chaining allows multiple methods to be applied on the same element in a single statement — making code shorter, cleaner, and more expressive. This powerful feature lets you transform elements with just one line.
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="panel controls-panel">
+                    <div class="panel-title"><span class="dot"></span> Style Controls</div>
+
+                    <!-- Font Size -->
+                    <div class="control-group">
+                        <label>Font Size <span class="control-val" id="fontVal">16px</span></label>
+                        <div class="range-row">
+                            <input type="range" id="fontRange" class="range-input" min="10" max="42" value="16">
+                        </div>
+                    </div>
+
+                    <!-- Letter Spacing -->
+                    <div class="control-group">
+                        <label>Letter Spacing <span class="control-val" id="spacingVal">0px</span></label>
+                        <div class="range-row">
+                            <input type="range" id="spacingRange" class="range-input" min="-2" max="10" value="0">
+                        </div>
+                    </div>
+
+                    <!-- Line Height -->
+                    <div class="control-group">
+                        <label>Line Height <span class="control-val" id="lineVal">1.7</span></label>
+                        <div class="range-row">
+                            <input type="range" id="lineRange" class="range-input" min="10" max="30" value="17" step="1">
+                        </div>
+                    </div>
+
+                    <!-- Text Color -->
+                    <div class="control-group">
+                        <label>Text Color</label>
+                        <div class="color-swatches" id="textColors">
+                            <button class="swatch active" data-color="#1e293b" style="background:#1e293b;"></button>
+                            <button class="swatch" data-color="#6366f1" style="background:#6366f1;"></button>
+                            <button class="swatch" data-color="#0891b2" style="background:#0891b2;"></button>
+                            <button class="swatch" data-color="#e11d48" style="background:#e11d48;"></button>
+                            <button class="swatch" data-color="#059669" style="background:#059669;"></button>
+                            <button class="swatch" data-color="#d97706" style="background:#d97706;"></button>
+                        </div>
+                    </div>
+
+                    <!-- Background Color -->
+                    <div class="control-group">
+                        <label>Background</label>
+                        <div class="color-swatches" id="bgColors">
+                            <button class="swatch active" data-color="#f8fafc" style="background:#f8fafc;"></button>
+                            <button class="swatch" data-color="#eef2ff" style="background:#eef2ff;"></button>
+                            <button class="swatch" data-color="#ecfeff" style="background:#ecfeff;"></button>
+                            <button class="swatch" data-color="#fff1f2" style="background:#fff1f2;"></button>
+                            <button class="swatch" data-color="#ecfdf5" style="background:#ecfdf5;"></button>
+                            <button class="swatch" data-color="#fffbeb" style="background:#fffbeb;"></button>
+                        </div>
+                    </div>
+
+                    <!-- Toggle Buttons -->
+                    <div class="control-group">
+                        <label>Text Style</label>
+                        <div class="toggle-btns">
+                            <button class="toggle-btn" id="btnBold"><strong>B</strong></button>
+                            <button class="toggle-btn" id="btnItalic"><em>I</em></button>
+                            <button class="toggle-btn" id="btnUnderline"><u>U</u></button>
+                            <button class="toggle-btn" id="btnUppercase">Aa</button>
+                            <button class="toggle-btn" id="btnShadow">S</button>
+                        </div>
+                    </div>
+
+                    <!-- Presets -->
+                    <div class="control-group">
+                        <label>Quick Presets</label>
+                        <div class="preset-btns">
+                            <button class="btn btn-sm btn-ghost preset-btn" data-preset="neon">Neon</button>
+                            <button class="btn btn-sm btn-ghost preset-btn" data-preset="elegant">Elegant</button>
+                            <button class="btn btn-sm btn-ghost preset-btn" data-preset="retro">Retro</button>
+                            <button class="btn btn-sm btn-ghost preset-btn" data-preset="minimal">Minimal</button>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-rose w-full mt-sm" id="resetAll">Reset All Styles</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

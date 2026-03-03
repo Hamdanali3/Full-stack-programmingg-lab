@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2 — Animated Image Gallery</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="container">
+            <a href="../index.html" class="back-nav">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Lab Tasks
+            </a>
+
+            <div class="task-header">
+                <div class="flex gap-sm mb-sm">
+                    <span class="badge badge-amber">Effects</span>
+                    <span class="badge badge-indigo">DOM</span>
+                    <span class="badge badge-cyan">Chaining</span>
+                </div>
+                <h1 class="text-gradient">Animated Image Gallery</h1>
+                <p class="task-desc">Crossfade transitions, thumbnail navigation, auto-play, keyboard controls, and dynamic captions.</p>
+            </div>
+
+            <!-- Gallery -->
+            <div class="gallery-container panel">
+                <!-- Main display -->
+                <div class="gallery-main" id="galleryMain">
+                    <div class="slide active" data-index="0">
+                        <img src="https://picsum.photos/seed/cosmic1/900/500" alt="Cosmic Nebula">
+                    </div>
+                    <div class="slide" data-index="1">
+                        <img src="https://picsum.photos/seed/cosmic2/900/500" alt="Mountain Peaks">
+                    </div>
+                    <div class="slide" data-index="2">
+                        <img src="https://picsum.photos/seed/cosmic3/900/500" alt="Ocean Horizon">
+                    </div>
+                    <div class="slide" data-index="3">
+                        <img src="https://picsum.photos/seed/cosmic4/900/500" alt="Desert Dunes">
+                    </div>
+                    <div class="slide" data-index="4">
+                        <img src="https://picsum.photos/seed/cosmic5/900/500" alt="Northern Lights">
+                    </div>
+                    <div class="slide" data-index="5">
+                        <img src="https://picsum.photos/seed/cosmic6/900/500" alt="Forest Canopy">
+                    </div>
+
+                    <!-- Overlay controls -->
+                    <button class="nav-arrow nav-prev" id="prevBtn">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <button class="nav-arrow nav-next" id="nextBtn">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+
+                    <!-- Progress bar -->
+                    <div class="slide-progress">
+                        <div class="slide-progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <!-- Caption -->
+                <div class="caption-bar">
+                    <div class="caption-text">
+                        <h3 id="captionTitle">Cosmic Nebula</h3>
+                        <p id="captionDesc">A breathtaking view of interstellar gas and dust illuminated by newborn stars.</p>
+                    </div>
+                    <div class="caption-meta">
+                        <span class="slide-counter"><span id="currentNum">1</span> / <span id="totalNum">6</span></span>
+                        <button class="btn btn-ghost btn-sm" id="autoPlayBtn">
+                            <svg id="playIcon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                            <svg id="pauseIcon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                            <span id="autoLabel">Auto</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Thumbnail strip -->
+                <div class="thumb-strip" id="thumbStrip">
+                    <div class="thumb active" data-index="0"><img src="https://picsum.photos/seed/cosmic1/120/80" alt="Thumb 1"></div>
+                    <div class="thumb" data-index="1"><img src="https://picsum.photos/seed/cosmic2/120/80" alt="Thumb 2"></div>
+                    <div class="thumb" data-index="2"><img src="https://picsum.photos/seed/cosmic3/120/80" alt="Thumb 3"></div>
+                    <div class="thumb" data-index="3"><img src="https://picsum.photos/seed/cosmic4/120/80" alt="Thumb 4"></div>
+                    <div class="thumb" data-index="4"><img src="https://picsum.photos/seed/cosmic5/120/80" alt="Thumb 5"></div>
+                    <div class="thumb" data-index="5"><img src="https://picsum.photos/seed/cosmic6/120/80" alt="Thumb 6"></div>
+                </div>
+            </div>
+
+            <!-- Keyboard hint -->
+            <p class="keyboard-hint">
+                <kbd>&larr;</kbd> <kbd>&rarr;</kbd> arrow keys &bull; <kbd>Space</kbd> auto-play
+            </p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 — Interactive Form Validation</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="container">
+            <a href="../index.html" class="back-nav">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Lab Tasks
+            </a>
+
+            <div class="task-header">
+                <div class="flex gap-sm mb-sm">
+                    <span class="badge badge-cyan">Events</span>
+                    <span class="badge badge-rose">CSS</span>
+                    <span class="badge badge-indigo">DOM</span>
+                </div>
+                <h1 class="text-gradient">Interactive Form Validation</h1>
+                <p class="task-desc">Real-time validation with password strength meter, animated errors, and success confirmation — no page refresh.</p>
+            </div>
+
+            <div class="form-layout">
+                <!-- Progress Steps -->
+                <div class="form-progress">
+                    <div class="progress-step active" data-step="1"><span class="step-num">1</span><span class="step-label">Personal</span></div>
+                    <div class="progress-line"><div class="progress-line-fill" id="progLine1"></div></div>
+                    <div class="progress-step" data-step="2"><span class="step-num">2</span><span class="step-label">Account</span></div>
+                    <div class="progress-line"><div class="progress-line-fill" id="progLine2"></div></div>
+                    <div class="progress-step" data-step="3"><span class="step-num">3</span><span class="step-label">Confirm</span></div>
+                </div>
+
+                <!-- Form Card -->
+                <div class="panel form-card">
+                    <form id="regForm" autocomplete="off" novalidate>
+
+                        <!-- Step 1: Personal -->
+                        <div class="form-step active" data-step="1">
+                            <h2 class="step-title">Personal Information</h2>
+                            <div class="field-group">
+                                <label for="fname">Full Name</label>
+                                <div class="field-wrap">
+                                    <input type="text" id="fname" class="input-field" placeholder="John Doe">
+                                    <span class="field-icon" id="fnameIcon"></span>
+                                </div>
+                                <p class="field-error" id="fnameErr">Name must be at least 3 characters.</p>
+                            </div>
+                            <div class="field-group">
+                                <label for="femail">Email Address</label>
+                                <div class="field-wrap">
+                                    <input type="email" id="femail" class="input-field" placeholder="john@example.com">
+                                    <span class="field-icon" id="femailIcon"></span>
+                                </div>
+                                <p class="field-error" id="femailErr">Please enter a valid email address.</p>
+                            </div>
+                            <div class="field-group">
+                                <label for="fphone">Phone Number</label>
+                                <div class="field-wrap">
+                                    <input type="tel" id="fphone" class="input-field" placeholder="03XXXXXXXXX">
+                                    <span class="field-icon" id="fphoneIcon"></span>
+                                </div>
+                                <p class="field-error" id="fphoneErr">Enter a valid 11-digit phone number.</p>
+                            </div>
+                            <div class="form-actions">
+                                <span></span>
+                                <button type="button" class="btn btn-primary next-btn" data-next="2">Continue <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Account -->
+                        <div class="form-step" data-step="2">
+                            <h2 class="step-title">Account Setup</h2>
+                            <div class="field-group">
+                                <label for="fusername">Username</label>
+                                <div class="field-wrap">
+                                    <input type="text" id="fusername" class="input-field" placeholder="johndoe_99">
+                                    <span class="field-icon" id="fusernameIcon"></span>
+                                </div>
+                                <p class="field-error" id="fusernameErr">Username must be 4-20 chars, letters/numbers/underscore only.</p>
+                            </div>
+                            <div class="field-group">
+                                <label for="fpass">Password</label>
+                                <div class="field-wrap">
+                                    <input type="password" id="fpass" class="input-field" placeholder="Min 8 characters">
+                                    <span class="field-icon" id="fpassIcon"></span>
+                                </div>
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="strengthFill"></div>
+                                </div>
+                                <p class="strength-label" id="strengthLabel">Password strength</p>
+                                <p class="field-error" id="fpassErr">Password must be at least 8 characters with uppercase, lowercase, and number.</p>
+                            </div>
+                            <div class="field-group">
+                                <label for="fconfirm">Confirm Password</label>
+                                <div class="field-wrap">
+                                    <input type="password" id="fconfirm" class="input-field" placeholder="Re-enter password">
+                                    <span class="field-icon" id="fconfirmIcon"></span>
+                                </div>
+                                <p class="field-error" id="fconfirmErr">Passwords do not match.</p>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-ghost prev-btn" data-prev="1"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</button>
+                                <button type="submit" class="btn btn-emerald">Create Account <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Success -->
+                        <div class="form-step" data-step="3">
+                            <div class="success-screen">
+                                <div class="success-circle" id="successCircle">
+                                    <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <h2>Account Created!</h2>
+                                <p>Welcome aboard, <strong id="welcomeName">User</strong>. Your account has been set up successfully.</p>
+                                <button type="button" class="btn btn-primary mt-md" id="resetBtn">Start Over</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
