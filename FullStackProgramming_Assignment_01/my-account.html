@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage your HotTub Haven account, orders, addresses, and more.">
+  <title>My Account - HotTub Haven</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="preloader"><div class="spinner"></div></div>
+
+  <div class="top-bar d-none d-lg-block">
+    <div class="container"><div class="row align-items-center"><div class="col-md-6"><span><i class="fas fa-phone-alt me-2"></i> +1 (800) 555-TUBS</span></div><div class="col-md-6 text-end"><span class="text-light">Welcome, John!</span><span class="mx-2">|</span><a href="login.html">Logout</a></div></div></div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">HotTub<span>Haven</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><i class="fas fa-bars"></i></button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="category.html">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-icons d-flex align-items-center">
+          <a href="my-account.html"><i class="fas fa-user"></i></a>
+          <a href="#"><i class="fas fa-heart"></i></a>
+          <a href="shopping-cart.html" class="position-relative"><i class="fas fa-shopping-bag"></i><span class="cart-count">3</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-banner">
+    <div class="container">
+      <h1 class="fade-in">My Account</h1>
+      <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item active">My Account</li></ol></nav>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Sidebar -->
+        <div class="col-lg-3">
+          <div class="account-sidebar fade-in">
+            <div class="sidebar-header">
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <h6>John Davidson</h6>
+              <small>john@example.com</small>
+            </div>
+            <ul class="sidebar-nav">
+              <li><a href="my-account.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+              <li><a href="order-details.html"><i class="fas fa-shopping-bag"></i> My Orders</a></li>
+              <li><a href="edit-account.html"><i class="fas fa-user-edit"></i> Edit Account</a></li>
+              <li><a href="edit-billing.html"><i class="fas fa-file-invoice"></i> Billing Address</a></li>
+              <li><a href="edit-shipping.html"><i class="fas fa-truck"></i> Shipping Address</a></li>
+              <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9">
+          <div class="account-content fade-in">
+            <div class="content-header">
+              <h4><i class="fas fa-tachometer-alt me-2 text-secondary-custom"></i>Dashboard</h4>
+            </div>
+
+            <div class="alert alert-info d-flex align-items-center" role="alert" style="font-size:0.9rem;">
+              <i class="fas fa-info-circle me-2"></i>
+              Welcome back, <strong class="ms-1">John!</strong>&nbsp; From your dashboard you can manage your account, view recent orders, and update your addresses.
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="row g-3 mb-4">
+              <div class="col-md-4">
+                <div class="dashboard-card">
+                  <div class="icon" style="background:rgba(40,167,69,0.1);color:var(--success);"><i class="fas fa-shopping-bag"></i></div>
+                  <h6>Total Orders</h6>
+                  <p>12 Orders</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="dashboard-card">
+                  <div class="icon" style="background:rgba(200,169,81,0.1);color:var(--secondary);"><i class="fas fa-heart"></i></div>
+                  <h6>Wishlist Items</h6>
+                  <p>5 Items</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="dashboard-card">
+                  <div class="icon" style="background:rgba(23,162,184,0.1);color:var(--info);"><i class="fas fa-star"></i></div>
+                  <h6>Reviews Given</h6>
+                  <p>8 Reviews</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <h5 class="mb-3" style="font-family:var(--font-body);font-weight:600;">Recent Orders</h5>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead style="background:var(--gray-100);">
+                  <tr>
+                    <th style="font-size:0.85rem;">Order #</th>
+                    <th style="font-size:0.85rem;">Date</th>
+                    <th style="font-size:0.85rem;">Status</th>
+                    <th style="font-size:0.85rem;">Total</th>
+                    <th style="font-size:0.85rem;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-semibold">#HTH-1234</td>
+                    <td class="text-muted">Feb 28, 2026</td>
+                    <td><span class="badge bg-success">Delivered</span></td>
+                    <td class="fw-semibold">$4,999.00</td>
+                    <td><a href="order-details.html" class="btn btn-sm btn-outline-secondary">View</a></td>
+                  </tr>
+                  <tr>
+                    <td class="fw-semibold">#HTH-1189</td>
+                    <td class="text-muted">Feb 15, 2026</td>
+                    <td><span class="badge bg-warning text-dark">Processing</span></td>
+                    <td class="fw-semibold">$179.00</td>
+                    <td><a href="order-details.html" class="btn btn-sm btn-outline-secondary">View</a></td>
+                  </tr>
+                  <tr>
+                    <td class="fw-semibold">#HTH-1102</td>
+                    <td class="text-muted">Jan 20, 2026</td>
+                    <td><span class="badge bg-success">Delivered</span></td>
+                    <td class="fw-semibold">$3,499.00</td>
+                    <td><a href="order-details.html" class="btn btn-sm btn-outline-secondary">View</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Account Info -->
+            <div class="row g-3 mt-2">
+              <div class="col-md-6">
+                <div class="dashboard-card">
+                  <h6><i class="fas fa-file-invoice me-2 text-secondary-custom"></i>Billing Address</h6>
+                  <p>John Davidson<br>123 Main Street<br>Relaxation City, CA 90210<br>United States</p>
+                  <a href="edit-billing.html" class="text-secondary-custom" style="font-size:0.85rem;"><i class="fas fa-edit me-1"></i>Edit</a>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="dashboard-card">
+                  <h6><i class="fas fa-truck me-2 text-secondary-custom"></i>Shipping Address</h6>
+                  <p>John Davidson<br>456 Oak Avenue<br>Relaxation City, CA 90210<br>United States</p>
+                  <a href="edit-shipping.html" class="text-secondary-custom" style="font-size:0.85rem;"><i class="fas fa-edit me-1"></i>Edit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6"><h5>HotTub<span class="text-secondary-custom">Haven</span></h5><p>Your trusted source for premium hot tubs and spas since 2005.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+        <div class="col-lg-2 col-md-6"><h5>Quick Links</h5><ul class="footer-links"><li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li><li><a href="category.html"><i class="fas fa-chevron-right"></i> Shop</a></li><li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li></ul></div>
+        <div class="col-lg-2 col-md-6"><h5>Account</h5><ul class="footer-links"><li><a href="my-account.html"><i class="fas fa-chevron-right"></i> Dashboard</a></li><li><a href="shopping-cart.html"><i class="fas fa-chevron-right"></i> Cart</a></li></ul></div>
+        <div class="col-lg-4 col-md-6"><h5>Contact</h5><ul class="contact-info list-unstyled"><li><i class="fas fa-map-marker-alt"></i><span>123 Spa Blvd, Relaxation City, CA 90210</span></li><li><i class="fas fa-phone-alt"></i><span>+1 (800) 555-TUBS</span></li><li><i class="fas fa-envelope"></i><span>info@hottubhaven.com</span></li></ul></div>
+      </div>
+      <div class="footer-bottom"><div class="row align-items-center"><div class="col-md-6"><p>&copy; 2025 HotTub Haven. All Rights Reserved.</p></div><div class="col-md-6 text-md-end"><div class="payment-icons"><i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i><i class="fab fa-cc-paypal"></i></div></div></div></div>
+    </div>
+  </footer>
+
+  <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/validation.js"></script>
+</body>
+</html>
