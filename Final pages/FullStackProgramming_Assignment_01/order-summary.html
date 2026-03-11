@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Summary — HotTub Haven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="preloader"><div class="spinner"></div></div>
+  <div class="top-bar d-none d-lg-block"><div class="container"><div class="row align-items-center"><div class="col-md-6"><span><i class="fas fa-phone-alt me-2"></i> +1 (800) 555-TUBS</span><span class="ms-4"><i class="fas fa-envelope me-2"></i> info@hottubhaven.com</span></div><div class="col-md-6 text-end"><a href="login.html">Login</a><span class="mx-2">|</span><a href="register.html">Register</a><span class="ms-3 social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a></span></div></div></div></div>
+  <nav class="navbar navbar-expand-lg sticky-top"><div class="container"><a class="navbar-brand" href="index.html">HotTub<span>Haven</span></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><i class="fas fa-bars"></i></button><div class="collapse navbar-collapse" id="navMenu"><ul class="navbar-nav mx-auto"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="category.html" data-bs-toggle="dropdown">Shop</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="category.html">All Products</a></li><li><a class="dropdown-item" href="category.html">Hot Tubs</a></li><li><a class="dropdown-item" href="category.html">Swim Spas</a></li><li><a class="dropdown-item" href="category.html">Accessories</a></li></ul></li><li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li></ul><div class="nav-icons d-flex align-items-center"><a href="my-account.html"><i class="fas fa-user"></i></a><a href="#"><i class="fas fa-heart"></i></a><a href="shopping-cart.html" class="position-relative"><i class="fas fa-shopping-bag"></i><span class="cart-count">3</span></a></div></div></div></nav>
+
+  <section class="page-banner"><div class="container text-center"><h1>Order Summary</h1><nav aria-label="breadcrumb"><ol class="breadcrumb justify-content-center"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item"><a href="order-details.html">Orders</a></li><li class="breadcrumb-item active">#HTH-5021</li></ol></nav></div></section>
+
+  <section class="section-padding">
+    <div class="container">
+      <!-- Order Status Steps -->
+      <div class="checkout-steps mb-5">
+        <div class="step completed"><div class="step-number"><i class="fas fa-check"></i></div><div class="step-label">Order Placed</div><div class="step-date">Jan 15, 2025</div></div>
+        <div class="step-line completed"></div>
+        <div class="step completed"><div class="step-number"><i class="fas fa-check"></i></div><div class="step-label">Processing</div><div class="step-date">Jan 16, 2025</div></div>
+        <div class="step-line completed"></div>
+        <div class="step completed"><div class="step-number"><i class="fas fa-check"></i></div><div class="step-label">Shipped</div><div class="step-date">Jan 18, 2025</div></div>
+        <div class="step-line completed"></div>
+        <div class="step completed"><div class="step-number"><i class="fas fa-check"></i></div><div class="step-label">Delivered</div><div class="step-date">Jan 22, 2025</div></div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Order Items -->
+        <div class="col-lg-8">
+          <div class="bg-white rounded shadow-sm p-4 mb-4">
+            <h5 class="mb-3" style="font-family:var(--font-heading);">Order #HTH-5021</h5>
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead class="table-light"><tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><div class="d-flex align-items-center gap-3"><div class="cart-thumb"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=80&h=80&fit=crop" alt="Serenity Pro"></div><div><h6 class="mb-0">Serenity Pro 6-Person</h6><small class="text-muted">Color: Midnight Black</small></div></div></td>
+                    <td>$4,499.00</td><td>1</td><td class="fw-semibold">$4,499.00</td>
+                  </tr>
+                  <tr>
+                    <td><div class="d-flex align-items-center gap-3"><div class="cart-thumb"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=80&h=80&fit=crop" alt="Spa Cover"></div><div><h6 class="mb-0">Spa Cover Premium</h6><small class="text-muted">Size: 84" × 84"</small></div></div></td>
+                    <td>$349.00</td><td>1</td><td class="fw-semibold">$349.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="bg-white rounded shadow-sm p-4">
+                <h6 class="fw-semibold mb-3"><i class="fas fa-file-invoice me-2" style="color:var(--secondary);"></i>Billing Address</h6>
+                <address class="text-muted mb-0">John Doe<br>123 Main Street, Apt 4B<br>Los Angeles, CA 90001<br>United States<br><i class="fas fa-phone me-1"></i>+1 (555) 123-4567</address>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="bg-white rounded shadow-sm p-4">
+                <h6 class="fw-semibold mb-3"><i class="fas fa-shipping-fast me-2" style="color:var(--secondary);"></i>Shipping Address</h6>
+                <address class="text-muted mb-0">John Doe<br>456 Oak Avenue, Suite 201<br>San Francisco, CA 94102<br>United States<br><i class="fas fa-phone me-1"></i>+1 (555) 987-6543</address>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary Sidebar -->
+        <div class="col-lg-4">
+          <div class="order-summary-card">
+            <h5 class="mb-4" style="font-family:var(--font-heading);">Order Summary</h5>
+            <div class="d-flex justify-content-between mb-2"><span>Subtotal</span><span>$4,848.00</span></div>
+            <div class="d-flex justify-content-between mb-2"><span>Shipping</span><span class="text-success">Free</span></div>
+            <div class="d-flex justify-content-between mb-2"><span>Tax</span><span>$387.84</span></div>
+            <div class="d-flex justify-content-between mb-2"><span>Discount</span><span class="text-success">-$100.00</span></div>
+            <hr>
+            <div class="d-flex justify-content-between fw-bold fs-5"><span>Total</span><span style="color:var(--secondary);">$5,135.84</span></div>
+            <hr>
+            <h6 class="mb-2"><i class="fas fa-credit-card me-2"></i>Payment Method</h6>
+            <p class="text-muted mb-0">Visa ending in 4242</p>
+          </div>
+          <div class="mt-3 d-grid gap-2">
+            <a href="order-details.html" class="btn btn-outline-custom"><i class="fas fa-arrow-left me-2"></i>Back to Orders</a>
+            <button class="btn btn-primary-custom"><i class="fas fa-redo me-2"></i>Reorder</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter-section"><div class="container"><div class="row align-items-center"><div class="col-lg-6 mb-3 mb-lg-0"><h4><i class="fas fa-envelope me-2"></i>Subscribe to Our Newsletter</h4><p class="mb-0">Get exclusive deals and new product announcements.</p></div><div class="col-lg-6"><form class="d-flex"><div class="input-group"><input type="email" class="form-control" placeholder="Enter your email address" required><button class="btn" type="submit">Subscribe <i class="fas fa-paper-plane ms-1"></i></button></div></form></div></div></div></section>
+
+  <footer class="footer"><div class="container"><div class="row g-4"><div class="col-lg-4 col-md-6"><h5>HotTub<span class="text-secondary-custom">Haven</span></h5><p>Your trusted source for premium hot tubs since 2005.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div><div class="col-lg-2 col-md-6"><h5>Quick Links</h5><ul class="footer-links"><li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li><li><a href="category.html"><i class="fas fa-chevron-right"></i> Shop</a></li><li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li></ul></div><div class="col-lg-2 col-md-6"><h5>My Account</h5><ul class="footer-links"><li><a href="my-account.html"><i class="fas fa-chevron-right"></i> Dashboard</a></li><li><a href="shopping-cart.html"><i class="fas fa-chevron-right"></i> Cart</a></li><li><a href="order-details.html"><i class="fas fa-chevron-right"></i> Orders</a></li><li><a href="login.html"><i class="fas fa-chevron-right"></i> Login</a></li></ul></div><div class="col-lg-4 col-md-6"><h5>Get in Touch</h5><ul class="contact-info list-unstyled"><li><i class="fas fa-map-marker-alt"></i><span>123 Spa Boulevard, Relaxation City, CA 90210</span></li><li><i class="fas fa-phone-alt"></i><span>+1 (800) 555-TUBS</span></li><li><i class="fas fa-envelope"></i><span>info@hottubhaven.com</span></li></ul></div></div><div class="footer-bottom"><div class="row align-items-center"><div class="col-md-6"><p>&copy; 2025 HotTub Haven. All Rights Reserved.</p></div><div class="col-md-6 text-md-end"><div class="payment-icons"><i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i><i class="fab fa-cc-paypal"></i></div></div></div></div></div></footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/validation.js"></script>
+</body>
+</html>

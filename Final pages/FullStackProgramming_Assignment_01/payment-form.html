@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — HotTub Haven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="preloader"><div class="spinner"></div></div>
+  <div class="top-bar d-none d-lg-block"><div class="container"><div class="row align-items-center"><div class="col-md-6"><span><i class="fas fa-phone-alt me-2"></i> +1 (800) 555-TUBS</span><span class="ms-4"><i class="fas fa-envelope me-2"></i> info@hottubhaven.com</span></div><div class="col-md-6 text-end"><a href="login.html">Login</a><span class="mx-2">|</span><a href="register.html">Register</a><span class="ms-3 social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a></span></div></div></div></div>
+  <nav class="navbar navbar-expand-lg sticky-top"><div class="container"><a class="navbar-brand" href="index.html">HotTub<span>Haven</span></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><i class="fas fa-bars"></i></button><div class="collapse navbar-collapse" id="navMenu"><ul class="navbar-nav mx-auto"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="category.html" data-bs-toggle="dropdown">Shop</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="category.html">All Products</a></li><li><a class="dropdown-item" href="category.html">Hot Tubs</a></li><li><a class="dropdown-item" href="category.html">Swim Spas</a></li><li><a class="dropdown-item" href="category.html">Accessories</a></li></ul></li><li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li></ul><div class="nav-icons d-flex align-items-center"><a href="my-account.html"><i class="fas fa-user"></i></a><a href="#"><i class="fas fa-heart"></i></a><a href="shopping-cart.html" class="position-relative"><i class="fas fa-shopping-bag"></i><span class="cart-count">3</span></a></div></div></div></nav>
+
+  <section class="page-banner"><div class="container text-center"><h1>Checkout</h1><nav aria-label="breadcrumb"><ol class="breadcrumb justify-content-center"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item"><a href="shopping-cart.html">Cart</a></li><li class="breadcrumb-item active">Checkout</li></ol></nav></div></section>
+
+  <section class="payment-section section-padding">
+    <div class="container">
+      <!-- Checkout Steps -->
+      <div class="checkout-steps mb-5">
+        <div class="step completed"><div class="step-number"><i class="fas fa-check"></i></div><div class="step-label">Shopping Cart</div></div>
+        <div class="step-line completed"></div>
+        <div class="step active"><div class="step-number">2</div><div class="step-label">Checkout</div></div>
+        <div class="step-line"></div>
+        <div class="step"><div class="step-number">3</div><div class="step-label">Order Complete</div></div>
+      </div>
+
+      <form id="checkoutForm" novalidate>
+        <div class="row g-4">
+          <!-- Billing Details -->
+          <div class="col-lg-8">
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+              <h5 class="mb-4" style="font-family:var(--font-heading);">Billing Details</h5>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">First Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="firstName" required>
+                  <div class="invalid-feedback">Please enter your first name.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Last Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="lastName" required>
+                  <div class="invalid-feedback">Please enter your last name.</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Company Name (Optional)</label>
+                  <input type="text" class="form-control" name="company">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Country / Region <span class="text-danger">*</span></label>
+                  <select class="form-select" name="country" required>
+                    <option value="">Select a country...</option>
+                    <option value="US" selected>United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="AU">Australia</option>
+                  </select>
+                  <div class="invalid-feedback">Please select a country.</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Street Address <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control mb-2" name="address1" placeholder="House number and street name" required>
+                  <input type="text" class="form-control" name="address2" placeholder="Apartment, suite, unit, etc. (optional)">
+                  <div class="invalid-feedback">Please enter your street address.</div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">City <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="city" required>
+                  <div class="invalid-feedback">Please enter your city.</div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">State <span class="text-danger">*</span></label>
+                  <select class="form-select" name="state" required>
+                    <option value="">Select...</option>
+                    <option value="CA">California</option>
+                    <option value="NY">New York</option>
+                    <option value="TX">Texas</option>
+                    <option value="FL">Florida</option>
+                  </select>
+                  <div class="invalid-feedback">Please select a state.</div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">ZIP Code <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="zip" required>
+                  <div class="invalid-feedback">Please enter your ZIP code.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Phone <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" name="phone" required>
+                  <div class="invalid-feedback">Please enter your phone number.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" name="email" required>
+                  <div class="invalid-feedback">Please enter a valid email.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="shipDifferent">
+                <label class="form-check-label fw-semibold" for="shipDifferent">Ship to a different address?</label>
+              </div>
+              <div id="shippingFields" style="display:none;">
+                <div class="row g-3">
+                  <div class="col-md-6"><label class="form-label">First Name</label><input type="text" class="form-control"></div>
+                  <div class="col-md-6"><label class="form-label">Last Name</label><input type="text" class="form-control"></div>
+                  <div class="col-12"><label class="form-label">Street Address</label><input type="text" class="form-control"></div>
+                  <div class="col-md-4"><label class="form-label">City</label><input type="text" class="form-control"></div>
+                  <div class="col-md-4"><label class="form-label">State</label><select class="form-select"><option>California</option><option>New York</option></select></div>
+                  <div class="col-md-4"><label class="form-label">ZIP Code</label><input type="text" class="form-control"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded shadow-sm p-4">
+              <label class="form-label">Order Notes (Optional)</label>
+              <textarea class="form-control" rows="3" placeholder="Notes about your order, e.g. special delivery instructions"></textarea>
+            </div>
+          </div>
+
+          <!-- Order Summary & Payment -->
+          <div class="col-lg-4">
+            <div class="order-summary-card mb-4">
+              <h5 class="mb-4" style="font-family:var(--font-heading);">Your Order</h5>
+              <div class="d-flex justify-content-between mb-2 pb-2 border-bottom"><span class="fw-semibold">Product</span><span class="fw-semibold">Total</span></div>
+              <div class="d-flex justify-content-between mb-2"><span>Serenity Pro 6-Person × 1</span><span>$4,499.00</span></div>
+              <div class="d-flex justify-content-between mb-2"><span>Spa Cover Premium × 1</span><span>$349.00</span></div>
+              <div class="d-flex justify-content-between mb-2"><span>Aromatherapy Kit × 2</span><span>$119.98</span></div>
+              <hr>
+              <div class="d-flex justify-content-between mb-2"><span>Subtotal</span><span>$4,967.98</span></div>
+              <div class="d-flex justify-content-between mb-2"><span>Shipping</span><span class="text-success">Free</span></div>
+              <div class="d-flex justify-content-between mb-2"><span>Tax</span><span>$397.44</span></div>
+              <hr>
+              <div class="d-flex justify-content-between fw-bold fs-5"><span>Total</span><span style="color:var(--secondary);">$5,365.42</span></div>
+            </div>
+
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+              <h6 class="mb-3" style="font-family:var(--font-heading);">Payment Method</h6>
+              <div class="payment-method-option active mb-2">
+                <input class="form-check-input" type="radio" name="payment" id="creditCard" value="credit-card" checked>
+                <label class="form-check-label d-flex align-items-center gap-2 w-100" for="creditCard">
+                  <i class="fas fa-credit-card"></i><span>Credit / Debit Card</span>
+                  <span class="ms-auto"><i class="fab fa-cc-visa"></i> <i class="fab fa-cc-mastercard"></i></span>
+                </label>
+              </div>
+              <div id="cardDetails" class="ps-4 pb-3">
+                <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="Card Number"></div>
+                <div class="row g-2"><div class="col-6"><input type="text" class="form-control form-control-sm" placeholder="MM / YY"></div><div class="col-6"><input type="text" class="form-control form-control-sm" placeholder="CVC"></div></div>
+              </div>
+              <div class="payment-method-option mb-2">
+                <input class="form-check-input" type="radio" name="payment" id="paypal" value="paypal">
+                <label class="form-check-label d-flex align-items-center gap-2" for="paypal"><i class="fab fa-paypal"></i><span>PayPal</span></label>
+              </div>
+              <div class="payment-method-option">
+                <input class="form-check-input" type="radio" name="payment" id="cod" value="cod">
+                <label class="form-check-label d-flex align-items-center gap-2" for="cod"><i class="fas fa-money-bill-wave"></i><span>Cash on Delivery</span></label>
+              </div>
+            </div>
+
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+              <label class="form-check-label" for="agreeTerms">I have read and agree to the <a href="terms-conditions.html" style="color:var(--secondary);">Terms & Conditions</a></label>
+            </div>
+
+            <button type="submit" class="btn btn-primary-custom w-100 py-3"><i class="fas fa-lock me-2"></i>Place Order — $5,365.42</button>
+            <div class="text-center mt-3"><small class="text-muted"><i class="fas fa-shield-alt me-1"></i>Your payment information is secure and encrypted</small></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="newsletter-section"><div class="container"><div class="row align-items-center"><div class="col-lg-6 mb-3 mb-lg-0"><h4><i class="fas fa-envelope me-2"></i>Subscribe to Our Newsletter</h4><p class="mb-0">Get exclusive deals and new product announcements.</p></div><div class="col-lg-6"><form class="d-flex"><div class="input-group"><input type="email" class="form-control" placeholder="Enter your email address" required><button class="btn" type="submit">Subscribe <i class="fas fa-paper-plane ms-1"></i></button></div></form></div></div></div></section>
+
+  <footer class="footer"><div class="container"><div class="row g-4"><div class="col-lg-4 col-md-6"><h5>HotTub<span class="text-secondary-custom">Haven</span></h5><p>Your trusted source for premium hot tubs since 2005.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div><div class="col-lg-2 col-md-6"><h5>Quick Links</h5><ul class="footer-links"><li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li><li><a href="category.html"><i class="fas fa-chevron-right"></i> Shop</a></li><li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li></ul></div><div class="col-lg-2 col-md-6"><h5>My Account</h5><ul class="footer-links"><li><a href="my-account.html"><i class="fas fa-chevron-right"></i> Dashboard</a></li><li><a href="shopping-cart.html"><i class="fas fa-chevron-right"></i> Cart</a></li><li><a href="order-details.html"><i class="fas fa-chevron-right"></i> Orders</a></li><li><a href="login.html"><i class="fas fa-chevron-right"></i> Login</a></li></ul></div><div class="col-lg-4 col-md-6"><h5>Get in Touch</h5><ul class="contact-info list-unstyled"><li><i class="fas fa-map-marker-alt"></i><span>123 Spa Boulevard, Relaxation City, CA 90210</span></li><li><i class="fas fa-phone-alt"></i><span>+1 (800) 555-TUBS</span></li><li><i class="fas fa-envelope"></i><span>info@hottubhaven.com</span></li></ul></div></div><div class="footer-bottom"><div class="row align-items-center"><div class="col-md-6"><p>&copy; 2025 HotTub Haven. All Rights Reserved.</p></div><div class="col-md-6 text-md-end"><div class="payment-icons"><i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i><i class="fab fa-cc-paypal"></i></div></div></div></div></div></footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/validation.js"></script>
+  <script>
+    document.getElementById('shipDifferent').addEventListener('change', function(){
+      document.getElementById('shippingFields').style.display = this.checked ? 'block' : 'none';
+    });
+    document.querySelectorAll('input[name="payment"]').forEach(function(radio){
+      radio.addEventListener('change', function(){
+        document.querySelectorAll('.payment-method-option').forEach(function(opt){ opt.classList.remove('active'); });
+        this.closest('.payment-method-option').classList.add('active');
+        document.getElementById('cardDetails').style.display = this.value === 'credit-card' ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

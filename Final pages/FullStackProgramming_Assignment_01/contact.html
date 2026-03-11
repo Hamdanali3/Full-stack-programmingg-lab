@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — HotTub Haven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="preloader"><div class="spinner"></div></div>
+
+  <!-- Top Bar -->
+  <div class="top-bar d-none d-lg-block">
+    <div class="container"><div class="row align-items-center"><div class="col-md-6"><span><i class="fas fa-phone-alt me-2"></i> +1 (800) 555-TUBS</span><span class="ms-4"><i class="fas fa-envelope me-2"></i> info@hottubhaven.com</span></div><div class="col-md-6 text-end"><a href="login.html">Login</a><span class="mx-2">|</span><a href="register.html">Register</a><span class="ms-3 social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a></span></div></div></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">HotTub<span>Haven</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><i class="fas fa-bars"></i></button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="category.html" data-bs-toggle="dropdown">Shop</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="category.html">All Products</a></li><li><a class="dropdown-item" href="category.html">Hot Tubs</a></li><li><a class="dropdown-item" href="category.html">Swim Spas</a></li><li><a class="dropdown-item" href="category.html">Accessories</a></li></ul></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-icons d-flex align-items-center"><a href="my-account.html"><i class="fas fa-user"></i></a><a href="#"><i class="fas fa-heart"></i></a><a href="shopping-cart.html" class="position-relative"><i class="fas fa-shopping-bag"></i><span class="cart-count">3</span></a></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="container text-center"><h1>Contact Us</h1><nav aria-label="breadcrumb"><ol class="breadcrumb justify-content-center"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item active">Contact Us</li></ol></nav></div>
+  </section>
+
+  <!-- Contact Info Cards -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="row g-4 mb-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card text-center scale-in">
+            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+            <h5>Visit Our Showroom</h5>
+            <p>123 Spa Boulevard<br>Relaxation City, CA 90210</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card text-center scale-in">
+            <div class="icon"><i class="fas fa-phone-alt"></i></div>
+            <h5>Call Us</h5>
+            <p>+1 (800) 555-TUBS<br>Mon — Sat: 9AM — 8PM</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card text-center scale-in">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <h5>Email Us</h5>
+            <p>info@hottubhaven.com<br>support@hottubhaven.com</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form + Map -->
+      <div class="row g-5">
+        <div class="col-lg-7">
+          <h2 class="section-title">Send Us a Message</h2>
+          <p class="text-muted mb-4">Have a question about our products, need a quote, or want help choosing the perfect hot tub? Fill out the form below and we'll get back to you within 24 hours.</p>
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">First Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="firstName" required>
+                <div class="invalid-feedback">Please enter your first name.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Last Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="lastName" required>
+                <div class="invalid-feedback">Please enter your last name.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" name="email" required>
+                <div class="invalid-feedback">Please enter a valid email.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" name="phone">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Subject <span class="text-danger">*</span></label>
+                <select class="form-select" name="subject" required>
+                  <option value="" selected disabled>Select a subject</option>
+                  <option>General Inquiry</option>
+                  <option>Product Question</option>
+                  <option>Request a Quote</option>
+                  <option>Order Support</option>
+                  <option>Warranty Claim</option>
+                </select>
+                <div class="invalid-feedback">Please select a subject.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Message <span class="text-danger">*</span></label>
+                <textarea class="form-control" name="message" rows="5" required></textarea>
+                <div class="invalid-feedback">Please enter your message.</div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary-custom"><i class="fas fa-paper-plane me-2"></i>Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-5">
+          <h2 class="section-title">Find Us</h2>
+          <div class="rounded overflow-hidden shadow-sm" style="height:400px;background:#e9ecef;display:flex;align-items:center;justify-content:center;">
+            <div class="text-center text-muted">
+              <i class="fas fa-map-marked-alt fa-4x mb-3" style="color:var(--primary);"></i>
+              <p class="mb-0 fw-semibold">123 Spa Boulevard</p>
+              <p class="mb-0">Relaxation City, CA 90210</p>
+              <a href="#" class="btn btn-sm btn-outline-custom mt-3"><i class="fas fa-directions me-1"></i>Get Directions</a>
+            </div>
+          </div>
+          <div class="mt-4">
+            <h5 class="mb-3">Business Hours</h5>
+            <ul class="list-unstyled text-muted">
+              <li class="d-flex justify-content-between py-2 border-bottom"><span>Monday — Friday</span><span class="fw-semibold">9:00 AM — 8:00 PM</span></li>
+              <li class="d-flex justify-content-between py-2 border-bottom"><span>Saturday</span><span class="fw-semibold">10:00 AM — 6:00 PM</span></li>
+              <li class="d-flex justify-content-between py-2"><span>Sunday</span><span class="fw-semibold">Closed</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section">
+    <div class="container"><div class="row align-items-center"><div class="col-lg-6 mb-3 mb-lg-0"><h4><i class="fas fa-envelope me-2"></i>Subscribe to Our Newsletter</h4><p class="mb-0">Get exclusive deals, tips, and new product announcements.</p></div><div class="col-lg-6"><form class="d-flex"><div class="input-group"><input type="email" class="form-control" placeholder="Enter your email address" required><button class="btn" type="submit">Subscribe <i class="fas fa-paper-plane ms-1"></i></button></div></form></div></div></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6"><h5>HotTub<span class="text-secondary-custom">Haven</span></h5><p>Your trusted source for premium hot tubs, swim spas, and accessories since 2005.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+        <div class="col-lg-2 col-md-6"><h5>Quick Links</h5><ul class="footer-links"><li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li><li><a href="category.html"><i class="fas fa-chevron-right"></i> Shop</a></li><li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li><li><a href="terms-conditions.html"><i class="fas fa-chevron-right"></i> Terms</a></li></ul></div>
+        <div class="col-lg-2 col-md-6"><h5>My Account</h5><ul class="footer-links"><li><a href="my-account.html"><i class="fas fa-chevron-right"></i> Dashboard</a></li><li><a href="shopping-cart.html"><i class="fas fa-chevron-right"></i> Cart</a></li><li><a href="order-details.html"><i class="fas fa-chevron-right"></i> Orders</a></li><li><a href="login.html"><i class="fas fa-chevron-right"></i> Login</a></li></ul></div>
+        <div class="col-lg-4 col-md-6"><h5>Get in Touch</h5><ul class="contact-info list-unstyled"><li><i class="fas fa-map-marker-alt"></i><span>123 Spa Boulevard, Relaxation City, CA 90210</span></li><li><i class="fas fa-phone-alt"></i><span>+1 (800) 555-TUBS</span></li><li><i class="fas fa-envelope"></i><span>info@hottubhaven.com</span></li><li><i class="fas fa-clock"></i><span>Mon — Sat: 9:00 AM — 8:00 PM</span></li></ul></div>
+      </div>
+      <div class="footer-bottom"><div class="row align-items-center"><div class="col-md-6"><p>&copy; 2025 HotTub Haven. All Rights Reserved.</p></div><div class="col-md-6 text-md-end"><div class="payment-icons"><i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i><i class="fab fa-cc-paypal"></i></div></div></div></div>
+    </div>
+  </footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/validation.js"></script>
+</body>
+</html>
