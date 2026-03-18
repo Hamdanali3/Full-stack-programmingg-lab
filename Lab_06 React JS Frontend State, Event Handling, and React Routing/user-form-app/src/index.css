@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #dbeafe, #f8fafc 55%, #eef2ff);
+  color: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  font-family: 'Gill Sans', 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f0f9ff, #f8fafc, #fff7ed);
+  color: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+}

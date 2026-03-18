@@ -1,0 +1,103 @@
+.routing-app {
+  min-height: 100vh;
+}
+
+.topbar {
+  background: linear-gradient(120deg, #0f172a, #0c4a6e);
+  color: #ffffff;
+  padding: 1.25rem;
+  position: sticky;
+  top: 0;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.topbar nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.topbar a {
+  color: #f8fafc;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.topbar a:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.page-content {
+  width: min(960px, 92vw);
+  margin: 1.5rem auto;
+  background: #ffffff;
+  border: 1px solid #dbe4ee;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+  padding: 1.5rem;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.65rem;
+  font-size: 1rem;
+}
+
+.contact-form button,
+.product-card button,
+.back-home {
+  border: none;
+  border-radius: 8px;
+  background: #047857;
+  color: #ffffff;
+  padding: 0.6rem 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.product-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  background: #f8fafc;
+}
+
+.product-card h3 {
+  margin: 0 0 0.6rem;
+}
+
+.cart-count {
+  font-weight: 700;
+  color: #1d4ed8;
+}
+
+@media (max-width: 740px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}

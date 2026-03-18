@@ -1,0 +1,67 @@
+.form-app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+}
+
+.form-app h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.card {
+  width: min(560px, 92vw);
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #dbe4ee;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  padding: 1.5rem;
+}
+
+.user-form {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.user-form label {
+  font-weight: 600;
+}
+
+.user-form input {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  font-size: 1rem;
+}
+
+.user-form button {
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #0f766e;
+  color: #ffffff;
+  padding: 0.7rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.user-form button:hover {
+  background: #0e665f;
+}
+
+.submitted-output {
+  margin-top: 1.25rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1rem;
+}
+
+.submitted-output h2 {
+  margin: 0 0 0.5rem;
+}
+
+.submitted-output p {
+  margin: 0.35rem 0;
+}

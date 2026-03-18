@@ -1,0 +1,55 @@
+.event-app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+}
+
+.event-app h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.actions-card {
+  width: min(680px, 94vw);
+  border-radius: 16px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.12);
+  padding: 1.5rem;
+  transition: background-color 0.25s ease;
+}
+
+.status-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 1.25rem;
+  transition: color 0.2s ease;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.button-group button {
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 0.5rem;
+  background: #0284c7;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button-group button:hover {
+  background: #0369a1;
+}
+
+@media (max-width: 640px) {
+  .button-group {
+    grid-template-columns: 1fr;
+  }
+}
