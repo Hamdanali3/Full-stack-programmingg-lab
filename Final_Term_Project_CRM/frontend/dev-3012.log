@@ -1,0 +1,14 @@
+
+> final-term-crm-frontend@1.0.0 dev
+> next dev -p 3012
+
+   ▲ Next.js 15.5.19
+   - Local:        http://localhost:3012
+   - Network:      http://192.168.18.77:3012
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1761ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 1926ms (802 modules)
+ GET /login 200 in 2299ms

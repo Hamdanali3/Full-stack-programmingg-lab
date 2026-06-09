@@ -1,0 +1,53 @@
+
+> final-term-crm-frontend@1.0.0 dev
+> next dev
+
+   ▲ Next.js 15.5.19
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.18.77:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.3s
+ ○ Compiling /login ...
+ ✓ Compiled /login in 9.1s (816 modules)
+ GET /login 200 in 10167ms
+ GET /login 200 in 10823ms
+ GET /login 200 in 70ms
+ GET /login 200 in 74ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 1513ms (862 modules)
+ GET /dashboard 200 in 1755ms
+ GET /dashboard 200 in 69ms
+ ○ Compiling /dashboard/customers ...
+ ✓ Compiled /dashboard/customers in 931ms (869 modules)
+ GET /dashboard/customers 200 in 1098ms
+ ○ Compiling /dashboard/invoices ...
+ ✓ Compiled /dashboard/invoices in 4s (1234 modules)
+ GET /dashboard/invoices 200 in 4203ms
+ GET /dashboard/invoices 200 in 82ms
+ ○ Compiling /dashboard/chatbot ...
+ ✓ Compiled /dashboard/chatbot in 749ms (1241 modules)
+ GET /dashboard/chatbot 200 in 895ms
+ GET /dashboard/customers 200 in 105ms
+ GET /dashboard/chatbot 200 in 51ms
+ GET /dashboard/invoices 200 in 78ms
+ GET /dashboard/chatbot 200 in 56ms
+ GET /dashboard 200 in 68ms
+ GET /dashboard/customers 200 in 54ms
+ ○ Compiling /dashboard/customers/add ...
+ ✓ Compiled /dashboard/customers/add in 1321ms (1250 modules)
+ GET /dashboard/customers/add 200 in 1583ms
+ GET /dashboard 200 in 59ms
+ GET /dashboard/invoices 200 in 85ms
+ GET /dashboard/customers 200 in 67ms
+ ○ Compiling /dashboard/customers/[id]/edit ...
+ ✓ Compiled /dashboard/customers/[id]/edit in 1375ms (1250 modules)
+ GET /dashboard/customers/6a2727708a48740db2e7d0a2/edit 200 in 2257ms
+ GET /dashboard 200 in 96ms
+ GET /dashboard/customers 200 in 77ms
+ GET /dashboard/customers/6a2727708a48740db2e7d0a1/edit 200 in 74ms
+ GET /dashboard 200 in 59ms
+ GET /dashboard/chatbot 200 in 106ms
+ GET /dashboard/invoices 200 in 81ms
+ GET /dashboard/customers 200 in 58ms
